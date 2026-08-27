@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#07111f" />
+  <title>Start a Project - Launch Assist Studio</title>
+  <meta name="description" content="Tell Launch Assist Studio about your project." />
+  <link rel="stylesheet" href="css/site.css" />
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container nav-wrap">
+    <a class="brand" href="index.html" aria-label="Launch Assist Studio home">
+      <span class="brand-mark" aria-hidden="true"><span>LA</span></span>
+      <span class="brand-copy"><strong>LAUNCH ASSIST</strong><small>STUDIO</small></span>
+    </a>
+    <button class="menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <nav class="main-nav" aria-label="Primary navigation">
+      <a href="index.html">Home</a>
+<a href="services.html">Services</a>
+<a href="pricing.html">Pricing</a>
+<a href="portfolio.html">Portfolio</a>
+<a href="about.html">About</a>
+<a href="contact.html">Contact</a>
+      <a class="btn btn-small btn-primary" href="start-project.html">Start a Project</a>
+    </nav>
+  </div>
+</header>
+<main>
+
+<section class="page-hero compact"><div class="container narrow"><span class="eyebrow">START A PROJECT</span><h1>Tell us what you're building.</h1><p>Give us the basics. We'll use your answers to understand the project before we talk.</p></div></section>
+<section class="section form-section"><div class="container form-shell">
+<form class="project-form">
+<fieldset><legend><span>01</span> What can we help you with?</legend><p class="field-help">Select all that apply.</p><div class="check-grid">
+<label class="check-card"><input type="checkbox" class="service-checkbox" value="Website Design & Development"><span>Website Design &amp; Development</span></label>
+<label class="check-card"><input type="checkbox" class="service-checkbox" value="E-Commerce / Online Store"><span>E-Commerce / Online Store</span></label>
+<label class="check-card"><input type="checkbox" class="service-checkbox" value="Custom Software Development"><span>Custom Software Development</span></label>
+<label class="check-card"><input type="checkbox" class="service-checkbox" value="Existing Software Improvements"><span>Existing Software Improvements</span></label>
+<label class="check-card"><input type="checkbox" class="service-checkbox" value=".NET Development"><span>.NET Development</span></label>
+<label class="check-card"><input type="checkbox" class="service-checkbox" value="SQL Server / Database Work"><span>SQL Server / Database Work</span></label>
+<label class="check-card"><input type="checkbox" class="service-checkbox" value="API or System Integration"><span>API or System Integration</span></label>
+<label class="check-card"><input type="checkbox" class="service-checkbox" value="Logo Design"><span>Logo Design</span></label>
+<label class="check-card"><input type="checkbox" class="service-checkbox" value="Branding"><span>Branding</span></label>
+<label class="check-card"><input type="checkbox" class="service-checkbox" value="Ongoing Development Support"><span>Ongoing Development Support</span></label>
+<label class="check-card"><input type="checkbox" class="service-checkbox" value="I'm Not Sure Yet"><span>I'm Not Sure Yet</span></label>
+</div></fieldset>
+
+<fieldset><legend><span>02</span> Tell us about your business.</legend><div class="form-grid">
+<label><span>Business Name</span><input name="BusinessName"></label><label><span>Current Website</span><input name="CurrentWebsite" placeholder="https://"></label>
+<label><span>Industry</span><input name="Industry"></label><label class="full"><span>What does your business do?</span><textarea name="BusinessDescription" rows="4"></textarea></label>
+</div></fieldset>
+
+<fieldset><legend><span>03</span> Tell us about the project.</legend><label class="full"><span>What are you trying to build or improve?</span><textarea name="ProjectDescription" rows="6" required></textarea></label></fieldset>
+
+<fieldset id="ecommerceQuestions" class="conditional-section"><legend><span>04</span> E-Commerce Details</legend><div class="form-grid">
+<label><span>What will you sell?</span><select><option>Select one</option><option>Physical products</option><option>Digital products</option><option>Services</option><option>Subscriptions / memberships</option><option>A combination</option><option>Not sure yet</option></select></label>
+<label><span>Approximate product count</span><select><option>Select one</option><option>1–10</option><option>11–50</option><option>51–250</option><option>251–1,000</option><option>1,000+</option><option>Not sure</option></select></label>
+<label><span>Existing store/platform</span><input></label><label><span>Integrations needed?</span><input placeholder="Accounting, inventory, shipping, marketplaces..."></label>
+</div></fieldset>
+
+<fieldset id="softwareQuestions" class="conditional-section"><legend><span>05</span> Software Details</legend><div class="form-grid">
+<label><span>Type of software</span><select><option>Select one</option><option>Internal business application</option><option>Customer portal</option><option>Employee portal</option><option>SaaS application</option><option>Dashboard</option><option>Scheduling system</option><option>Workflow automation</option><option>Reporting system</option><option>API integration</option><option>Existing application modernization</option><option>Other</option></select></label>
+<label><span>Existing technology (if known)</span><input placeholder=".NET, SQL Server, WordPress, etc."></label>
+<label class="full"><span>Systems to integrate with</span><input placeholder="QuickBooks, Stripe, Microsoft 365, custom APIs..."></label>
+</div></fieldset>
+
+<fieldset><legend><span>06</span> Budget &amp; timing.</legend><div class="form-grid">
+<label><span>Approximate budget</span><select><option>Select one</option><option>Under $500</option><option>$500 – $1,000</option><option>$1,000 – $2,500</option><option>$2,500 – $5,000</option><option>$5,000 – $10,000</option><option>$10,000 – $25,000</option><option>$25,000+</option><option>Not sure yet</option></select></label>
+<label><span>When would you like to start?</span><select><option>Select one</option><option>As soon as possible</option><option>Within 30 days</option><option>Within 1–3 months</option><option>Within 3–6 months</option><option>Researching right now</option></select></label>
+</div></fieldset>
+
+<fieldset><legend><span>07</span> Contact information.</legend><div class="form-grid">
+<label><span>Your Name *</span><input required></label><label><span>Email *</span><input type="email" required></label>
+<label><span>Phone</span><input type="tel"></label><label><span>Preferred contact</span><select><option>Email</option><option>Phone</option><option>Either</option></select></label>
+<label class="full"><span>Anything else we should know?</span><textarea rows="4"></textarea></label>
+</div></fieldset>
+
+<div class="form-submit"><label class="agreement"><input type="checkbox" required><span>I understand that submitting this form does not create a contractual agreement or guarantee project availability.</span></label><button class="btn btn-primary btn-large" type="submit">Start My Project</button><p>Or email <a href="mailto:hello@launchassiststudio.com">hello@launchassiststudio.com</a></p></div>
+</form></div></section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div>
+      <a class="brand footer-brand" href="index.html">
+        <span class="brand-mark" aria-hidden="true"><span>LA</span></span>
+        <span class="brand-copy"><strong>LAUNCH ASSIST</strong><small>STUDIO</small></span>
+      </a>
+      <p>Websites, custom software, e-commerce and branding built to help businesses launch, grow and succeed.</p>
+    </div>
+    <div>
+      <h3>Services</h3>
+      <a href="services.html#websites">Web Development</a>
+      <a href="services.html#ecommerce">E-Commerce</a>
+      <a href="services.html#software">Custom Software</a>
+      <a href="services.html#branding">Branding</a>
+    </div>
+    <div>
+      <h3>Technology</h3>
+      <span>.NET &amp; C#</span><span>ASP.NET Core</span><span>Blazor</span><span>SQL Server</span>
+    </div>
+    <div>
+      <h3>Contact</h3>
+      <a href="mailto:hello@launchassiststudio.com">hello@launchassiststudio.com</a>
+      <a href="start-project.html">Start a Project</a>
+    </div>
+  </div>
+  <div class="container footer-bottom">
+    <span>© 2026 Launch Assist Studio. All rights reserved.</span>
+    <span>launchassiststudio.com</span>
+  </div>
+</footer>
+<script src="js/site.js"></script>
+</body>
+</html>
