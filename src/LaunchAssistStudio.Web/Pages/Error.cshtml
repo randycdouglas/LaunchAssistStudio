@@ -1,0 +1,25 @@
+@page "/error"
+@model ErrorModel
+@{
+    ViewData["Title"] = "Something went wrong";
+    ViewData["Description"] = "An error occurred.";
+    ViewData["NavActive"] = "";
+    var notFound = Model.ErrorStatusCode == 404;
+}
+
+<section class="section form-section"><div class="container form-shell">
+  <div class="success-card">
+    <span class="success-icon">!</span>
+    @if (notFound)
+    {
+      <h2>Page not found.</h2>
+      <p class="muted">The page you're looking for doesn't exist or has moved.</p>
+    }
+    else
+    {
+      <h2>Something went wrong.</h2>
+      <p class="muted">Sorry about that &mdash; please try again, or email <a href="mailto:hello@launchassiststudio.com">hello@launchassiststudio.com</a>.</p>
+    }
+    <a class="btn btn-primary" asp-page="/Index">Back to Home</a>
+  </div>
+</div></section>

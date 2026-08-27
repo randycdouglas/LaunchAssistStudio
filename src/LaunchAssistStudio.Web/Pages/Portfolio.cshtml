@@ -1,0 +1,30 @@
+@page "/portfolio"
+@{
+    ViewData["Title"] = "Portfolio";
+    ViewData["Description"] = "Featured work from Launch Assist Studio.";
+    ViewData["NavActive"] = "Portfolio";
+
+    // Each project is a CaseStudyViewModel rendered through the reusable
+    // _CaseStudy partial — add future client work to this list.
+    var caseStudies = new[]
+    {
+        new CaseStudyViewModel
+        {
+            Label = "FEATURED SOFTWARE PROJECT",
+            Title = "Office Assist AI",
+            Subtitle = "Custom SaaS platform for service businesses",
+            Description = "Demonstrates multi-tenant architecture, AI integrations, telecommunications, scheduling, payments, dashboards, business workflows, SQL Server and third-party APIs.",
+            Tags = [".NET", "SQL Server", "SaaS", "AI", "Voice & SMS", "Payments", "APIs"],
+            LogoInitials = "OA",
+        },
+    };
+}
+
+<section class="page-hero"><div class="container narrow"><span class="eyebrow">PORTFOLIO</span><h1>Work that combines business thinking, design and software engineering.</h1><p>Featured projects that show what Launch Assist Studio builds &mdash; with more on the way as new client work launches.</p></div></section>
+<section class="section"><div class="container">
+@foreach (var caseStudy in caseStudies)
+{
+    <partial name="_CaseStudy" model="caseStudy" />
+}
+<div class="section-heading" style="margin-top:80px"><span class="eyebrow">MORE WORK COMING</span><h2>Designed to grow with the portfolio.</h2><p>Each new project becomes a reusable case-study component, so the portfolio grows alongside the studio.</p></div>
+</div></section>

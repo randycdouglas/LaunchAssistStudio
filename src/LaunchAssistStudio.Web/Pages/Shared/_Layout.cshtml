@@ -1,0 +1,75 @@
+@{
+    var navActive = ViewData["NavActive"] as string ?? "";
+    string NavClass(string item) => navActive == item ? "active" : null!;
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#07111f" />
+  <title>@ViewData["Title"] - Launch Assist Studio</title>
+  <meta name="description" content="@ViewData["Description"]" />
+  <link rel="canonical" href="https://launchassiststudio.com@(Context.Request.Path.Value == "/" ? "" : Context.Request.Path.Value)" />
+  <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container nav-wrap">
+    <a class="brand" asp-page="/Index" aria-label="Launch Assist Studio home">
+      <span class="brand-mark" aria-hidden="true"><span>LA</span></span>
+      <span class="brand-copy"><strong>LAUNCH ASSIST</strong><small>STUDIO</small></span>
+    </a>
+    <button class="menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <nav class="main-nav" aria-label="Primary navigation">
+      <a asp-page="/Index" class="@NavClass("Home")">Home</a>
+      <a asp-page="/Services" class="@NavClass("Services")">Services</a>
+      <a asp-page="/Pricing" class="@NavClass("Pricing")">Pricing</a>
+      <a asp-page="/Portfolio" class="@NavClass("Portfolio")">Portfolio</a>
+      <a asp-page="/About" class="@NavClass("About")">About</a>
+      <a asp-page="/Contact" class="@NavClass("Contact")">Contact</a>
+      <a class="btn btn-small btn-primary" asp-page="/StartProject">Start a Project</a>
+    </nav>
+  </div>
+</header>
+<main>
+@RenderBody()
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div>
+      <a class="brand footer-brand" asp-page="/Index">
+        <span class="brand-mark" aria-hidden="true"><span>LA</span></span>
+        <span class="brand-copy"><strong>LAUNCH ASSIST</strong><small>STUDIO</small></span>
+      </a>
+      <p>Websites, custom software, e-commerce and branding built to help businesses launch, grow and succeed.</p>
+    </div>
+    <div>
+      <h3>Services</h3>
+      <a asp-page="/Services" asp-fragment="websites">Web Development</a>
+      <a asp-page="/Services" asp-fragment="ecommerce">E-Commerce</a>
+      <a asp-page="/Services" asp-fragment="software">Custom Software</a>
+      <a asp-page="/Services" asp-fragment="branding">Branding</a>
+    </div>
+    <div>
+      <h3>Technology</h3>
+      <span>.NET &amp; C#</span><span>ASP.NET Core</span><span>Blazor</span><span>SQL Server</span>
+    </div>
+    <div>
+      <h3>Contact</h3>
+      <a href="mailto:hello@launchassiststudio.com">hello@launchassiststudio.com</a>
+      <a asp-page="/StartProject">Start a Project</a>
+    </div>
+  </div>
+  <div class="container footer-bottom">
+    <span>&copy; @DateTime.UtcNow.Year Launch Assist Studio. All rights reserved.</span>
+    <span>launchassiststudio.com</span>
+  </div>
+</footer>
+<script src="~/js/site.js" asp-append-version="true"></script>
+</body>
+</html>

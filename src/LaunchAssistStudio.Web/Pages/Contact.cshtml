@@ -1,0 +1,12 @@
+@page "/contact"
+@{
+    ViewData["Title"] = "Contact";
+    ViewData["Description"] = "Contact Launch Assist Studio.";
+    ViewData["NavActive"] = "Contact";
+}
+
+<section class="page-hero"><div class="container narrow"><span class="eyebrow">CONTACT</span><h1>Let's talk about what you're building.</h1><p>For project inquiries, use the guided intake form or email us directly.</p></div></section>
+<section class="section"><div class="container"><div class="service-grid" style="grid-template-columns:repeat(2,1fr);max-width:800px;margin:auto">
+<article class="service-card"><div class="icon-box">@@</div><h3>Email</h3><p>General inquiries and project questions.</p><a href="mailto:hello@launchassiststudio.com">hello@launchassiststudio.com</a></article>
+<article class="service-card featured-card"><div class="icon-box">&rarr;</div><h3>Start a Project</h3><p>Give us the details up front so we can understand what you need before the first conversation.</p><a asp-page="/StartProject">Open the project intake form &rarr;</a></article>
+</div></div></section>
