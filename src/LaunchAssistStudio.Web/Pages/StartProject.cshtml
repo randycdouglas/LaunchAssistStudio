@@ -6,8 +6,9 @@
     ViewData["NavActive"] = "";
 }
 
-<section class="page-hero compact"><div class="container narrow"><span class="eyebrow">START A PROJECT</span><h1>Tell us what you're building.</h1><p>Give us the basics. We'll use your answers to understand the project before we talk.</p></div></section>
-<section class="section form-section"><div class="container form-shell">
+<section class="page-hero"><div class="wrap"><span class="kicker">START A PROJECT</span><h1>Tell us what you're building.</h1><p>Give us the basics. We'll use your answers to understand the project before we talk.</p></div></section>
+
+<section class="section-light"><div class="wrap form-shell">
 <form class="project-form" method="post">
 <div asp-validation-summary="All" class="validation-summary"></div>
 <input type="hidden" asp-for="FormRenderedAt" />
@@ -69,7 +70,7 @@
 
 <div class="form-submit">
 <label class="agreement"><input asp-for="Input.Agreement" required><span>I understand that submitting this form does not create a contractual agreement or guarantee project availability.</span></label>
-<button class="btn btn-primary btn-large" type="submit">Start My Project</button>
+<button class="button primary large" type="submit">Start My Project</button>
 <p>Or email <a href="mailto:hello@launchassiststudio.com">hello@launchassiststudio.com</a></p>
 </div>
 </form></div></section>

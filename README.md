@@ -79,6 +79,11 @@ In production (IIS/Azure), set the same keys as environment variables (`Email__H
 
 The publish profile you create is saved under `Properties/PublishProfiles/` and is git-ignored if it contains credentials (`*.pubxml.user`).
 
-## Design reference
+## Design reference — APPROVED DESIGN v2
 
-The visual design is the approved reference in `LaunchAssistStudio-HTML-Design-Reference` (sibling repo/folder). `wwwroot/css/site.css` is the reference stylesheet ported verbatim plus a small appended section for validation/anti-spam styling. Do not restyle; extend the existing design system.
+The visual source of truth is `LaunchAssistStudio-Approved-Design-v2` (sibling folder):
+`assets/approved-brand-reference.png`, `index.html`, `css/site.css`, `assets/launch-assist-logo.svg`.
+
+`wwwroot/css/site.css` is that v2 stylesheet verbatim, plus an appended "Production extensions" block that builds page heroes, pricing cards, the intake form and validation styling **from the same v2 tokens** (`--navy #0D1B2A`, `--blue #2563EB`, `--slate #475569`, `--light #CBD5E1`, `--white #F8FAFC`; Poppins headings, Inter body). Do not restyle — extend the existing design system.
+
+A static copy of the v2 reference is published under `docs/` for GitHub Pages preview.

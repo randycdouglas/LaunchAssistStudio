@@ -1,114 +1,114 @@
 @page "/"
 @{
     ViewData["Title"] = "Websites & Custom Software";
-    ViewData["Description"] = "Launch Assist Studio builds professional websites, e-commerce stores, custom .NET software, SQL Server solutions and branding.";
+    ViewData["Description"] = "Websites, e-commerce and custom Microsoft .NET software for businesses ready to launch and grow.";
     ViewData["NavActive"] = "Home";
 }
 
 <section class="hero">
-  <div class="container hero-grid">
+  <div class="wrap hero-grid">
     <div class="hero-copy">
-      <span class="eyebrow">WEB • SOFTWARE • E-COMMERCE • BRANDING</span>
-      <h1>Websites &amp; custom software that <span>move business forward.</span></h1>
-      <p class="hero-lead">From polished business websites to full-scale .NET applications and SQL Server solutions, Launch Assist Studio turns ideas into reliable digital products.</p>
-      <div class="hero-actions">
-        <a class="btn btn-primary" asp-page="/StartProject">Start Your Project</a>
-        <a class="btn btn-secondary" href="#work">View Our Work</a>
+      <span class="kicker">BUILD. LAUNCH. GROW.</span>
+      <h1>Websites &amp; Custom<br />Software That Drive<br />Real Results.</h1>
+      <p>Professional design. Clean code. Microsoft technologies.<br />Solutions built for your business.</p>
+      <div class="actions">
+        <a class="button primary" asp-page="/Services">Our Services</a>
+        <a class="button outline" asp-page="/Portfolio">View Our Work</a>
       </div>
-      <div class="tech-strip"><span>.NET</span><span>C#</span><span>ASP.NET Core</span><span>Blazor</span><span>SQL Server</span></div>
+      <div class="stack">
+        <span>.NET</span><span>C#</span><span>ASP.NET Core</span><span>Blazor</span><span>SQL Server</span>
+      </div>
     </div>
-    <div class="hero-visual" aria-hidden="true">
-      <div class="window-card">
-        <div class="window-top"><span></span><span></span><span></span></div>
-        <div class="window-body">
-          <div class="code-lines">
-            <span class="line w90"></span><span class="line w65 accent"></span><span class="line w80"></span><span class="line w50"></span><span class="line w75 accent"></span>
-          </div>
-          <div class="dashboard-grid">
-            <div class="metric"><small>Performance</small><strong>99.9%</strong></div>
-            <div class="metric"><small>Conversion</small><strong>+31%</strong></div>
-            <div class="chart"><i></i><i></i><i></i><i></i><i></i><i></i></div>
-          </div>
+
+    <div class="software-art" aria-label="Custom software interface illustration">
+      <div class="panel panel-back">
+        <div class="tiny-head"><i></i><i></i><i></i><b></b></div>
+        <div class="mini-code">
+          <span class="blue w80"></span><span class="w62"></span><span class="w88"></span>
+          <span class="blue w52"></span><span class="w70"></span><span class="w46"></span>
         </div>
       </div>
-      <div class="phone-card"><div class="phone-notch"></div><span class="mini-logo">LA</span><strong>Built to perform.</strong><span class="mini-button">Get Started</span></div>
-      <div class="floating-badge">Microsoft-focused development</div>
-    </div>
-  </div>
-</section>
-
-<section class="trust-bar"><div class="container"><span>Professional design.</span><span>Clean code.</span><span>Built for business.</span><span>Ready to grow.</span></div></section>
-
-<section class="section" id="services">
-  <div class="container">
-    <div class="section-heading">
-      <span class="eyebrow">WHAT WE BUILD</span>
-      <h2>One studio. From first logo to full business application.</h2>
-      <p>Start with exactly what you need today, then keep building as your business grows.</p>
-    </div>
-    <div class="service-grid">
-      <article class="service-card featured-card"><span class="service-number">01</span><div class="icon-box">&lt;/&gt;</div><h3>Custom Software</h3><p>Purpose-built .NET applications, portals, dashboards, workflow automation, integrations and SaaS products.</p><a asp-page="/Services" asp-fragment="software">Explore Software Development &rarr;</a></article>
-      <article class="service-card"><span class="service-number">02</span><div class="icon-box">WWW</div><h3>Web Development</h3><p>Fast, responsive websites designed to establish credibility, generate leads and convert visitors.</p><a asp-page="/Services" asp-fragment="websites">Explore Web Development &rarr;</a></article>
-      <article class="service-card"><span class="service-number">03</span><div class="icon-box">SHOP</div><h3>E-Commerce</h3><p>Online stores with payments, product catalogs, customer accounts and integrations built around your business.</p><a asp-page="/Services" asp-fragment="ecommerce">Explore E-Commerce &rarr;</a></article>
-      <article class="service-card"><span class="service-number">04</span><div class="icon-box">SQL</div><h3>Database Development</h3><p>SQL Server architecture, optimization, migrations, reporting and data-driven application development.</p><a asp-page="/Services" asp-fragment="database">Explore Database Services &rarr;</a></article>
-      <article class="service-card"><span class="service-number">05</span><div class="icon-box">LA</div><h3>Logo &amp; Branding</h3><p>Logos, color systems, typography and digital brand assets that give your business a professional identity.</p><a asp-page="/Services" asp-fragment="branding">Explore Branding &rarr;</a></article>
-      <article class="service-card cta-card"><span class="eyebrow">NOT SURE WHERE TO START?</span><h3>Tell us the problem. We'll help map the solution.</h3><a class="btn btn-primary" asp-page="/StartProject">Start a Project</a></article>
-    </div>
-  </div>
-</section>
-
-<section class="section section-dark" id="technology">
-  <div class="container split-section">
-    <div><span class="eyebrow">MICROSOFT-FOCUSED DEVELOPMENT</span><h2>Serious software capability behind the design.</h2><p class="large-copy">Launch Assist Studio specializes in the Microsoft development ecosystem, giving businesses access to both creative design and professional software engineering under one roof.</p><a class="text-link" asp-page="/Services" asp-fragment="software">See our development capabilities &rarr;</a></div>
-    <div class="tech-grid">
-      <div><strong>.NET</strong><span>Modern business applications</span></div><div><strong>C#</strong><span>Reliable application development</span></div>
-      <div><strong>Blazor</strong><span>Interactive web applications</span></div><div><strong>ASP.NET Core</strong><span>High-performance web systems</span></div>
-      <div><strong>SQL Server</strong><span>Business-critical data</span></div><div><strong>REST APIs</strong><span>System integrations</span></div>
-    </div>
-  </div>
-</section>
-
-<section class="section" id="work">
-  <div class="container">
-    <div class="section-heading align-left"><span class="eyebrow">FEATURED WORK</span><h2>Software built for real businesses.</h2></div>
-    <article class="case-study">
-      <div class="case-copy">
-        <span class="case-label">FEATURED SOFTWARE PROJECT</span><h3>Office Assist AI</h3><h4>AI-powered business management &amp; customer communication platform</h4>
-        <p>A custom SaaS platform for service businesses combining AI, telecommunications, customer communication, scheduling, payments, business workflows and administrative tools.</p>
-        <div class="tag-list"><span>Multi-Tenant SaaS</span><span>AI Integrations</span><span>Voice &amp; SMS</span><span>Scheduling</span><span>Payments</span><span>SQL Server</span><span>APIs</span></div>
-        <a class="text-link" asp-page="/Portfolio">View portfolio &rarr;</a>
+      <div class="panel panel-mid">
+        <div class="mini-ui">
+          <div class="mountain">M</div>
+          <div><span class="w65"></span><span class="w85"></span><span class="w54"></span></div>
+        </div>
+        <div class="mini-bars"><i></i><i></i><i></i><i></i></div>
       </div>
-      <div class="case-visual" aria-hidden="true">
-        <div class="app-shell"><div class="app-sidebar"><span class="app-logo">OA</span><i></i><i></i><i></i><i></i><i></i></div><div class="app-main"><div class="app-head"></div><div class="app-metrics"><b></b><b></b><b></b></div><div class="app-chart"></div></div></div>
+      <div class="panel panel-front">
+        <div class="tiny-head"><i></i><i></i><i></i><b></b></div>
+        <pre><code><em>public</em> class LaunchSolution
+{
+    <em>public</em> string Platform =&gt; ".NET";
+    <em>public</em> bool BuiltToScale =&gt; true;
+}</code></pre>
       </div>
-    </article>
-  </div>
-</section>
-
-<section class="section section-dark" id="process">
-  <div class="container">
-    <div class="section-heading"><span class="eyebrow">OUR PROCESS</span><h2>From idea to launch.</h2></div>
-    <div class="process-grid">
-      <div><span>01</span><h3>Discover</h3><p>We learn your business, goals, users and challenges.</p></div>
-      <div><span>02</span><h3>Plan</h3><p>We define scope, design, technology and deliverables.</p></div>
-      <div><span>03</span><h3>Build</h3><p>We design, develop, test and refine the solution.</p></div>
-      <div><span>04</span><h3>Launch</h3><p>We deploy, verify and help put the finished product to work.</p></div>
-      <div><span>05</span><h3>Grow</h3><p>We can keep improving it as your business evolves.</p></div>
+      <div class="glow-ring"></div>
     </div>
   </div>
 </section>
 
-<section class="section pricing-preview">
-  <div class="container">
-    <div class="section-heading"><span class="eyebrow">INTRODUCTORY LAUNCH PRICING</span><h2>Professional work without big-agency pricing.</h2><p>We're keeping launch pricing intentionally accessible while we build long-term client relationships.</p></div>
-    <div class="price-teasers">
-      <div><small>Starter Website</small><strong>$399</strong><span>starting at</span></div>
-      <div><small>Business Website</small><strong>$699</strong><span>starting at</span></div>
-      <div><small>E-Commerce</small><strong>$999</strong><span>starting at</span></div>
-      <div><small>Custom Software</small><strong>$1,500</strong><span>starting at</span></div>
+<section class="capabilities" id="services">
+  <div class="wrap capability-grid">
+    <div class="cap-col services">
+      <h2>Services</h2>
+      <article><div class="line-icon browser"></div><div><h3>Website Design &amp; Development</h3><p>Custom, responsive websites that look great and perform flawlessly.</p></div></article>
+      <article><div class="line-icon code">&lt;/&gt;</div><div><h3>Custom Software Development</h3><p>Scalable web applications and business software built with Microsoft .NET.</p></div></article>
+      <article><div class="line-icon database"></div><div><h3>Database Design &amp; Management</h3><p>SQL Server solutions that are secure, reliable and optimized for performance.</p></div></article>
+      <article><div class="line-icon cart">&#9635;</div><div><h3>E-Commerce Development</h3><p>Professional online stores with payments, products and integrations.</p></div></article>
+      <article><div class="line-icon pencil">&#9998;</div><div><h3>Logo &amp; Branding</h3><p>Professional logos and branding that create a strong, lasting impression.</p></div></article>
+      <p style="margin-top:20px;font-size:13px"><a asp-page="/Pricing" style="color:#1764D8;font-weight:700;text-decoration:none">See introductory launch pricing &rarr;</a></p>
     </div>
-    <div class="center"><a class="btn btn-secondary" asp-page="/Pricing">See All Pricing</a></div>
+
+    <div class="cap-col tech">
+      <h2>Our Technology</h2>
+      <div class="tech-logos">
+        <div class="tech-logo"><strong>.NET</strong><small>Microsoft</small></div>
+        <div class="tech-logo sql"><strong>SQL Server</strong><small>Microsoft</small></div>
+      </div>
+      <h2 class="type-title">Technology Stack</h2>
+      <div class="stack-list">
+        <b>C# / .NET 10</b><b>ASP.NET Core</b><b>Blazor</b><b>Entity Framework</b><b>SQL Server</b><b>REST APIs</b>
+      </div>
+    </div>
+
+    <div class="cap-col values" id="about">
+      <h2>Why Launch Assist</h2>
+      <div class="value-grid">
+        <div><span class="value-icon">&#8599;</span><h3>Forward</h3><p>We propel your business forward.</p></div>
+        <div><span class="value-icon">&#9671;</span><h3>Reliable</h3><p>Solutions you can count on, built to last.</p></div>
+        <div><span class="value-icon">&lt;/&gt;</span><h3>Expert</h3><p>Skilled in Microsoft technologies. Focused on results.</p></div>
+        <div><span class="value-icon">&#9678;</span><h3>Partner</h3><p>We're invested in your success at every step.</p></div>
+      </div>
+      <div class="mini-card">
+        <img src="~/assets/launch-assist-logo.svg" alt="" />
+        <p><strong>Websites. Software. E-Commerce. Branding.</strong><br />Built to launch your success.</p>
+      </div>
+    </div>
   </div>
 </section>
 
-<section class="final-cta"><div class="container"><span class="eyebrow">READY TO BUILD SOMETHING?</span><h2>Tell us where you want to go.<br />We'll help you build the way there.</h2><p>Website, online store, custom application, database or brand&mdash;we can start with the idea.</p><a class="btn btn-primary btn-large" asp-page="/StartProject">Start Your Project</a></div></section>
+<section class="work" id="work">
+  <div class="wrap work-grid">
+    <div>
+      <span class="kicker">FEATURED SOFTWARE PROJECT</span>
+      <h2>Office Assist AI</h2>
+      <p class="lead">A custom SaaS platform demonstrating the kind of serious application work Launch Assist Studio can deliver.</p>
+      <div class="chips"><span>Multi-Tenant SaaS</span><span>AI</span><span>Voice &amp; SMS</span><span>Scheduling</span><span>Payments</span><span>SQL Server</span><span>APIs</span></div>
+      <a asp-page="/StartProject" class="button primary">Discuss Your Project</a>
+    </div>
+    <div class="dashboard">
+      <div class="dash-nav"><b>LA</b><i></i><i></i><i></i><i></i></div>
+      <div class="dash-body"><div class="dash-title"></div><div class="metric-row"><span></span><span></span><span></span></div><div class="graph"><i></i><i></i><i></i><i></i><i></i><i></i></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="cta" id="contact">
+  <div class="wrap">
+    <span class="kicker">READY TO BUILD?</span>
+    <h2>Websites &amp; custom software<br />built around your business.</h2>
+    <p>Tell us what you're trying to accomplish. We'll help you figure out the right way to build it.</p>
+    <a class="button primary large" asp-page="/StartProject">Let's Talk</a>
+  </div>
+</section>

@@ -5,8 +5,13 @@
     ViewData["NavActive"] = "Contact";
 }
 
-<section class="page-hero"><div class="container narrow"><span class="eyebrow">CONTACT</span><h1>Let's talk about what you're building.</h1><p>For project inquiries, use the guided intake form or email us directly.</p></div></section>
-<section class="section"><div class="container"><div class="service-grid" style="grid-template-columns:repeat(2,1fr);max-width:800px;margin:auto">
-<article class="service-card"><div class="icon-box">@@</div><h3>Email</h3><p>General inquiries and project questions.</p><a href="mailto:hello@launchassiststudio.com">hello@launchassiststudio.com</a></article>
-<article class="service-card featured-card"><div class="icon-box">&rarr;</div><h3>Start a Project</h3><p>Give us the details up front so we can understand what you need before the first conversation.</p><a asp-page="/StartProject">Open the project intake form &rarr;</a></article>
-</div></div></section>
+<section class="page-hero"><div class="wrap"><span class="kicker">CONTACT</span><h1>Let's talk about what you're building.</h1><p>For project inquiries, use the guided intake form or email us directly.</p></div></section>
+
+<section class="section-light"><div class="wrap form-shell">
+  <div class="pricing-grid" style="grid-template-columns:1fr 1fr">
+    <article class="pricing-card"><span class="pricing-type">EMAIL</span><h2>hello@launchassiststudio.com</h2><p class="muted" style="font-size:14px;margin:6px 0 20px">General inquiries and project questions.</p><a class="button primary" href="mailto:hello@launchassiststudio.com">Send an Email</a></article>
+    <article class="pricing-card popular"><span class="pricing-type">START A PROJECT</span><h2>Project intake form</h2><p class="muted" style="font-size:14px;margin:6px 0 20px">Give us the details up front so we can understand what you need before the first conversation.</p><a class="button primary" asp-page="/StartProject">Open the Intake Form</a></article>
+  </div>
+</div></section>
+
+<section class="cta"><div class="wrap"><span class="kicker">READY TO BUILD?</span><h2>Websites &amp; custom software<br />built around your business.</h2><p>Tell us what you're trying to accomplish. We'll help you figure out the right way to build it.</p><a class="button primary large" asp-page="/StartProject">Let's Talk</a></div></section>

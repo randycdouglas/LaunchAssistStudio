@@ -1,12 +1,9 @@
 (() => {
-    const toggle = document.querySelector(".menu-toggle");
-    const nav = document.querySelector(".main-nav");
+    const toggle = document.querySelector(".nav-toggle");
+    const links = document.querySelector(".links");
 
-    if (toggle && nav) {
-        toggle.addEventListener("click", () => {
-            const open = nav.classList.toggle("open");
-            toggle.setAttribute("aria-expanded", open ? "true" : "false");
-        });
+    if (toggle && links) {
+        toggle.addEventListener("click", () => links.classList.toggle("show"));
     }
 
     // Progressive enhancement: reveal the e-commerce / software question groups

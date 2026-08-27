@@ -13,18 +13,20 @@
             Label = "FEATURED SOFTWARE PROJECT",
             Title = "Office Assist AI",
             Subtitle = "Custom SaaS platform for service businesses",
-            Description = "Demonstrates multi-tenant architecture, AI integrations, telecommunications, scheduling, payments, dashboards, business workflows, SQL Server and third-party APIs.",
-            Tags = [".NET", "SQL Server", "SaaS", "AI", "Voice & SMS", "Payments", "APIs"],
+            Description = "multi-tenant architecture, AI integrations, telecommunications, scheduling, payments, dashboards, business workflows, SQL Server and third-party APIs.",
+            Tags = ["Multi-Tenant SaaS", "AI", "Voice & SMS", "Scheduling", "Payments", "SQL Server", "APIs"],
             LogoInitials = "OA",
         },
     };
 }
 
-<section class="page-hero"><div class="container narrow"><span class="eyebrow">PORTFOLIO</span><h1>Work that combines business thinking, design and software engineering.</h1><p>Featured projects that show what Launch Assist Studio builds &mdash; with more on the way as new client work launches.</p></div></section>
-<section class="section"><div class="container">
+<section class="page-hero"><div class="wrap"><span class="kicker">PORTFOLIO</span><h1>Work that combines business thinking, design and software engineering.</h1><p>Featured projects that show what Launch Assist Studio builds &mdash; with more on the way as new client work launches.</p></div></section>
+
+<section class="work"><div class="wrap">
 @foreach (var caseStudy in caseStudies)
 {
     <partial name="_CaseStudy" model="caseStudy" />
 }
-<div class="section-heading" style="margin-top:80px"><span class="eyebrow">MORE WORK COMING</span><h2>Designed to grow with the portfolio.</h2><p>Each new project becomes a reusable case-study component, so the portfolio grows alongside the studio.</p></div>
 </div></section>
+
+<section class="cta"><div class="wrap"><span class="kicker">MORE WORK COMING</span><h2>Designed to grow with the portfolio.</h2><p>Each new project becomes a reusable case-study component, so the portfolio grows alongside the studio.</p><a class="button primary large" asp-page="/StartProject">Start Your Project</a></div></section>
