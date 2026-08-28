@@ -294,3 +294,24 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,
   .phone{position:static;width:44%;min-width:0;margin:22px auto 0}
   .device-stage{padding-bottom:0}
 }
+
+/* Portfolio: browser-window mock for website case studies (the dashboard mock
+   suits applications; a brochure site should look like a site). */
+.work-grid + .work-grid { margin-top: 90px; }
+.work-grid.reverse > div:first-child { order: 2; }
+.site-mock{border:1px solid #3A86C355;border-radius:12px;overflow:hidden;background:#0A1B2D;box-shadow:0 25px 65px #0006;transform:perspective(900px) rotateY(5deg)}
+.work-grid.reverse .site-mock{transform:perspective(900px) rotateY(-5deg)}
+.site-bar{height:38px;background:#07111E;display:flex;align-items:center;gap:7px;padding:0 14px;border-bottom:1px solid #1C3C5B}
+.site-bar i{width:9px;height:9px;border-radius:50%;background:#24455f}
+.site-bar b{margin-left:12px;flex:1;height:16px;border-radius:9px;background:#102740}
+.site-body{padding:26px}
+.site-hero{height:78px;border-radius:8px;background:linear-gradient(120deg,#123B66,#0E2540);margin-bottom:16px;display:flex;flex-direction:column;justify-content:center;gap:8px;padding:0 20px}
+.site-hero span{display:block;height:9px;border-radius:8px;background:#2F6FA8}
+.site-hero span:first-child{width:58%;background:#3A9EFF}
+.site-hero span:last-child{width:38%}
+.site-cols{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.site-cols i{display:block;height:62px;border:1px solid #2D5C813F;border-radius:8px;background:#102740}
+.site-lines{margin-top:16px;display:grid;gap:9px}
+.site-lines span{display:block;height:8px;border-radius:8px;background:#1B3F5F}
+.site-lines span:nth-child(1){width:88%}.site-lines span:nth-child(2){width:72%}.site-lines span:nth-child(3){width:80%}
+@media(max-width:1050px){ .work-grid.reverse > div:first-child{order:0} .site-mock,.work-grid.reverse .site-mock{transform:none} .work-grid + .work-grid{margin-top:60px} }

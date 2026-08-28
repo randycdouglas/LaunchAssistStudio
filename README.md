@@ -15,8 +15,7 @@ src/LaunchAssistStudio.Web/
                     LeadEmailComposer, TurnstileVerifier
   wwwroot/          THE SITE — one folder per page, plus css/, js/, assets/
   web.config        IIS: ASP.NET Core module + MIME types
-docs/               GENERATED GitHub Pages preview (scripts/export-docs.ps1)
-scripts/            Preview export + icon/OG image generators
+scripts/            Icon and OG image generators
 ```
 
 Everything the visitor sees lives in `wwwroot`. Pages are folders so URLs stay extensionless — `wwwroot/services/index.html` is served at `/services`.
@@ -66,7 +65,7 @@ JSON in, JSON out. The page posts to it with `fetch`; the server re-validates ev
 
 Mail is always sent **From** the verified sender address, with the visitor in **Reply-To**. Putting the visitor in `From` would fail SPF/DKIM and land the studio's own intake in spam.
 
-Sending from `hello@launchassiststudio.com` requires verifying the domain in Resend (DKIM + SPF). Cloudflare Email Routing already publishes an SPF record for inbound forwarding, and a domain may only have **one** — the two `include:` values must be merged into a single line.
+Sending from `hello@launchassiststudio.com` requires the domain verified in Resend. Resend publishes its SPF and bounce records on the `send.` subdomain, so they sit alongside the Cloudflare Email Routing records at the apex without conflicting — no SPF merge is needed.
 
 Delivery log: **https://resend.com/emails**
 
@@ -114,6 +113,3 @@ powershell -Command "Get-Process -Name 'LaunchAssistStudio.Web' -ErrorAction Sil
 4. Put the Resend API key in `appsettings.Production.json` on the server, or set `Email__Resend__ApiKey` in the control panel.
 5. Open `/api/health` and confirm `"status": "ok"`.
 
-## Static preview
-
-`docs/` is a generated copy of `wwwroot` with URLs re-prefixed for GitHub Pages, published at **https://randycdouglas.github.io/LaunchAssistStudio/**. Regenerate with `scripts/export-docs.ps1` after changing the site. Do not hand-edit `docs/` — it is rebuilt from scratch each run.
