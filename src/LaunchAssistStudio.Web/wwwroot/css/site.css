@@ -315,3 +315,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,
 .site-lines span{display:block;height:8px;border-radius:8px;background:#1B3F5F}
 .site-lines span:nth-child(1){width:88%}.site-lines span:nth-child(2){width:72%}.site-lines span:nth-child(3){width:80%}
 @media(max-width:1050px){ .work-grid.reverse > div:first-child{order:0} .site-mock,.work-grid.reverse .site-mock{transform:none} .work-grid + .work-grid{margin-top:56px;padding-top:56px} }
+
+/* Contact: the general-inquiry form sits below the two choice cards. */
+.contact-form-block{margin-top:64px;padding-top:56px;border-top:1px solid #DCE4EC;scroll-margin-top:96px}
+.contact-form-block .section-title{margin-bottom:28px}

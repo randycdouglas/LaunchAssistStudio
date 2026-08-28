@@ -50,34 +50,44 @@
 
 <main id="main">
 
-<section class="page-hero"><div class="wrap"><span class="kicker">CONTACT</span><h1>Let's talk about what you're building.</h1><p>Send us a message and we'll reply within one business day. For a quote, the project form captures the details we'd need up front.</p></div></section>
+<section class="page-hero"><div class="wrap"><span class="kicker">CONTACT</span><h1>Let's talk about what you're building.</h1><p>For project inquiries, use the guided intake form. For anything else, send us a message.</p></div></section>
 
 <section class="section-light"><div class="wrap form-shell">
-  <form class="project-form" id="contactForm" data-kind="general" novalidate>
-    <div class="validation-summary validation-summary-valid"></div>
+  <div class="pricing-grid" style="grid-template-columns:1fr 1fr">
+    <article class="pricing-card"><span class="pricing-type">GENERAL INQUIRY</span><h2>Send us a message</h2><p class="muted" style="font-size:14px;margin:6px 0 20px">Questions about services, pricing or anything else. We reply within one business day.</p><a class="button primary" href="#message">Open the Contact Form</a></article>
+    <article class="pricing-card popular"><span class="pricing-type">START A PROJECT</span><h2>Project intake form</h2><p class="muted" style="font-size:14px;margin:6px 0 20px">Give us the details up front so we can understand what you need before the first conversation.</p><a class="button primary" href="/start-project">Open the Intake Form</a></article>
+  </div>
 
-    <div class="hp-field" aria-hidden="true">
-      <label>Company fax (leave this blank)<input type="text" name="CompanyFax" value="" tabindex="-1" autocomplete="off" /></label>
-    </div>
+  <div id="message" class="contact-form-block">
+    <div class="section-title"><span class="kicker">GENERAL INQUIRY</span><h2>Send us a message</h2><p>Not a full project brief &mdash; just tell us what you need and we'll come back to you.</p></div>
 
-    <fieldset>
-      <legend>Send us a message</legend>
-      <div class="form-grid">
-        <label><span>Your Name *</span><input name="ContactName" autocomplete="name" required></label>
-        <label><span>Email *</span><input name="Email" type="email" autocomplete="email" required></label>
-        <label class="full"><span>Phone</span><input name="Phone" type="tel" autocomplete="tel"></label>
-        <label class="full"><span>How can we help? *</span><textarea name="ProjectDescription" rows="6" required></textarea></label>
+    <form class="project-form" id="contactForm" data-kind="general" novalidate>
+      <div class="validation-summary validation-summary-valid"></div>
+
+      <div class="hp-field" aria-hidden="true">
+        <label>Company fax (leave this blank)<input type="text" name="CompanyFax" value="" tabindex="-1" autocomplete="off" /></label>
       </div>
-    </fieldset>
 
-    <div class="form-submit">
-      <button class="button primary large" type="submit">Send Message</button>
-      <p>Prefer the full project questionnaire? <a href="/start-project">Start a project</a>.</p>
-    </div>
-  </form>
+      <fieldset>
+        <legend>Your details</legend>
+        <div class="form-grid">
+          <label><span>Your Name *</span><input name="ContactName" autocomplete="name" required></label>
+          <label><span>Email *</span><input name="Email" type="email" autocomplete="email" required></label>
+          <label class="full"><span>Phone</span><input name="Phone" type="tel" autocomplete="tel"></label>
+          <label class="full"><span>How can we help? *</span><textarea name="ProjectDescription" rows="6" required></textarea></label>
+        </div>
+      </fieldset>
+
+      <div class="form-submit">
+        <button class="button primary large" type="submit">Send Message</button>
+        <p>Ready to scope a build instead? <a href="/start-project">Start a project</a>.</p>
+      </div>
+    </form>
+  </div>
 </div></section>
 
-<section class="cta"><div class="wrap"><span class="kicker">READY TO BUILD?</span><h2>Websites &amp; custom software<br />built around your business.</h2><p>Tell us what you're trying to accomplish. We'll help you figure out the right way to build it.</p><a class="button primary large" href="/start-project">Start Your Project</a></div></section>
+<section class="cta"><div class="wrap"><span class="kicker">READY TO BUILD?</span><h2>Websites &amp; custom software<br />built around your business.</h2><p>Tell us what you're trying to accomplish. We'll help you figure out the right way to build it.</p><a class="button primary large" href="/start-project">Let's Talk</a></div></section>
+
 
 
 </main>
@@ -101,5 +111,6 @@
 <script src="/js/site.js"></script>
 </body>
 </html>
+
 
 
