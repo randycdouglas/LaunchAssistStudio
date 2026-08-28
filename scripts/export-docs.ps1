@@ -66,9 +66,9 @@ $formShim = @'
     var card = document.createElement("div");
     card.className = "success-card";
     card.innerHTML = '<span class="success-icon">&#10003;</span>' +
-      '<h2>Preview only.</h2>' +
-      '<p>This is the static design preview, so nothing was sent or stored.</p>' +
-      '<p class="muted">In the production .NET site this submission is validated on the server, saved to SQL Server as a <strong>New Lead</strong>, and triggers both an internal notification and a confirmation email.</p>' +
+      '<h2>Thanks &mdash; that\'s the whole flow.</h2>' +
+      '<p>This design preview doesn\'t send or store anything.</p>' +
+      '<p class="muted">On the live site, this submission is validated on the server, saved to SQL Server as a <strong>New Lead</strong>, and triggers both an internal notification and your confirmation email.</p>' +
       '<p style="margin-top:26px"><a class="button primary" href="index.html">Back to Home</a></p>';
     form.replaceWith(card);
     window.scrollTo({top: 0, behavior: "smooth"});
@@ -87,8 +87,6 @@ function Convert-Url([string]$raw) {
     return $raw   # leave anything unrecognised untouched
 }
 
-$banner = '<div style="background:#2563EB;color:#fff;text-align:center;padding:9px 16px;font:600 12px/1.5 Inter,Arial,sans-serif;letter-spacing:.02em">STATIC DESIGN PREVIEW &mdash; the production site runs on ASP.NET Core with SQL Server lead capture.</div>'
-
 foreach ($route in $Pages.Keys) {
     $file = $Pages[$route]
     $html = (Invoke-WebRequest -Uri "$Base$route" -UseBasicParsing).Content
@@ -99,9 +97,6 @@ foreach ($route in $Pages.Keys) {
         $new = Convert-Url $m.Groups['url'].Value
         '{0}="{1}"' -f $m.Groups['attr'].Value, $new
     })
-
-    # Preview banner directly after <body>
-    $html = $html -replace '(?i)(<body[^>]*>)', "`$1`n$banner"
 
     if ($file -eq "start-project.html") {
         $html = $html -replace '(?i)</body>', "$formShim`n</body>"

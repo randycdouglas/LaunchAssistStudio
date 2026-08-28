@@ -173,3 +173,124 @@ input.input-validation-error,textarea.input-validation-error,select.input-valida
 .skip-link:focus{left:0}
 a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible,.check-card:focus-within{outline:3px solid #5CC2FF;outline-offset:2px;border-radius:3px}
 .section-light a:focus-visible,.section-light button:focus-visible{outline-color:#1646B7}
+
+/* =====================================================================
+   BRAND-BOARD HOMEPAGE
+   The approved reference is the whole brand board, so the homepage is a
+   presentation-style composition: brand lockup + laptop/phone mockups on
+   navy, then the light board panels beneath.
+   ===================================================================== */
+
+.board-top{
+  position:relative;overflow:hidden;padding:150px 0 96px;
+  background:
+    radial-gradient(circle at 78% 44%,#0b4ba544 0,transparent 30%),
+    linear-gradient(115deg,#071321 0%,#0A192B 52%,#081523 100%);
+}
+.board-top:after{content:"";position:absolute;inset:auto 0 0;height:110px;background:linear-gradient(transparent,#0A1726);pointer-events:none}
+.board-hero{position:relative;z-index:2;display:grid;grid-template-columns:.82fr 1.18fr;gap:58px;align-items:center}
+
+.brand-lockup{display:block;width:min(100%,430px);height:auto}
+.board-eyebrow{
+  display:flex;flex-wrap:wrap;align-items:center;gap:0 12px;margin:30px 0 0;
+  font-family:Poppins,Inter,sans-serif;font-weight:700;
+  font-size:clamp(15px,1.45vw,21px);letter-spacing:.03em;color:#F8FAFC;
+}
+.board-eyebrow i{color:var(--blue);font-style:normal}
+.board-tagline{
+  font-size:clamp(17px,1.6vw,23px);line-height:1.55;color:#E1E8F0;
+  margin:22px 0 0;max-width:560px;
+}
+.board-tagline b{color:#3A9EFF;font-weight:600}
+.board-actions{display:flex;flex-wrap:wrap;gap:14px;margin-top:30px}
+
+/* ---- Device stage ---- */
+.device-stage{position:relative;padding:0 0 34px}
+.laptop{width:89%;margin-left:auto;filter:drop-shadow(0 34px 60px rgba(0,0,0,.55))}
+.laptop-lid{padding:9px 9px 0;border-radius:13px 13px 0 0;background:linear-gradient(#39434F,#242C36)}
+.laptop-screen{position:relative;aspect-ratio:16/10;overflow:hidden;border-radius:4px;background:#0A192B;container-type:inline-size}
+.laptop-base{height:13px;border-radius:0 0 11px 11px;background:linear-gradient(#3B4653,#20272F);position:relative}
+.laptop-base:after{content:"";position:absolute;left:50%;top:0;transform:translateX(-50%);width:13%;height:5px;border-radius:0 0 5px 5px;background:#171E26}
+
+.phone{
+  position:absolute;right:-1%;bottom:0;width:21.5%;min-width:118px;
+  padding:6px;border-radius:24px;background:linear-gradient(#39434F,#242C36);
+  box-shadow:0 26px 52px rgba(0,0,0,.6);
+}
+.phone-screen{position:relative;aspect-ratio:9/19;overflow:hidden;border-radius:19px;background:#0A192B;container-type:inline-size}
+.phone-screen:before{content:"";position:absolute;left:50%;top:5px;transform:translateX(-50%);width:38%;height:5px;border-radius:6px;background:#050B12;z-index:5}
+
+/* ---- The website rendered inside the mockups ---- */
+.mini-site{
+  font-size:9px;font-size:1.34cqw;                /* scales with the screen */
+  height:100%;padding:2.1em 2.4em;display:flex;flex-direction:column;color:#F8FAFC;
+  background:
+    radial-gradient(circle at 74% 46%,#0b4ba566 0,transparent 30%),
+    linear-gradient(115deg,#071321,#0A192B 52%,#081523);
+}
+.mini-nav{display:flex;align-items:center;justify-content:space-between;gap:1em}
+.mini-nav img{width:9.5em;height:auto;display:block}
+.mini-menu{display:flex;gap:1.5em;font-size:.8em;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:#DCE6F0}
+.mini-talk{background:var(--blue);color:#fff;padding:.6em 1.15em;border-radius:.4em;font-size:.78em;font-weight:700;letter-spacing:.05em;text-transform:uppercase;white-space:nowrap}
+.mini-body{display:grid;grid-template-columns:1.02fr .98fr;gap:2.2em;align-items:center;flex:1;padding-top:1.6em}
+.mini-kicker{color:#299DFF;font-weight:700;font-size:.92em;letter-spacing:.07em}
+.mini-site h3{font-family:Poppins,Inter,sans-serif;font-weight:700;font-size:2.7em;line-height:1.1;letter-spacing:-.035em;margin:.42em 0 .38em}
+.mini-site p{font-size:.92em;line-height:1.65;color:#D3DEE9;margin:0 0 1.5em}
+.mini-btns{display:flex;gap:.8em}
+.mini-btns span{font-size:.78em;font-weight:700;letter-spacing:.05em;text-transform:uppercase;padding:.75em 1.25em;border-radius:.4em;white-space:nowrap}
+.mini-btns .b1{background:var(--blue);color:#fff}
+.mini-btns .b2{border:1px solid rgba(107,174,240,.45);color:#fff}
+
+.mini-art{position:relative;height:100%;min-height:13em}
+.mini-panel{position:absolute;border:1px solid rgba(49,137,233,.4);border-radius:.7em;background:linear-gradient(145deg,#0B2440,#071421);box-shadow:0 1.4em 2.8em rgba(0,0,0,.5);overflow:hidden;padding:1.1em}
+.mini-panel .bar{display:block;height:.55em;border-radius:.5em;background:#224466;margin-bottom:.75em}
+.mini-panel .bar.blue{background:#2563EB}
+.mp-a{width:74%;right:0;top:4%;height:56%;transform:perspective(40em) rotateY(-13deg)}
+.mp-b{width:66%;left:0;top:34%;height:52%;transform:perspective(40em) rotateY(-8deg);z-index:2}
+.mp-b .chart{display:flex;align-items:flex-end;gap:.5em;height:58%;margin-top:.6em}
+.mp-b .chart i{flex:1;background:linear-gradient(#278DFA,#123257);border-radius:.25em .25em 0 0}
+.mp-b .chart i:nth-child(1){height:38%}.mp-b .chart i:nth-child(2){height:66%}
+.mp-b .chart i:nth-child(3){height:50%}.mp-b .chart i:nth-child(4){height:84%}
+
+/* Phone variant */
+.mini-phone{font-size:6px;font-size:3.1cqw;height:100%;padding:2.6em 1.5em 1.5em;display:flex;flex-direction:column;color:#F8FAFC;
+  background:radial-gradient(circle at 70% 30%,#0b4ba566 0,transparent 42%),linear-gradient(160deg,#071321,#0A192B)}
+.mini-phone .ptop{display:flex;align-items:center;justify-content:space-between;margin-bottom:2.4em}
+.mini-phone .ptop img{width:7.6em;height:auto}
+.mini-phone .burger{display:grid;gap:.28em}
+.mini-phone .burger i{display:block;width:1.5em;height:.2em;background:#fff;border-radius:2em}
+.mini-phone .pk{color:#299DFF;font-weight:700;font-size:.95em;letter-spacing:.06em}
+.mini-phone h4{font-family:Poppins,Inter,sans-serif;font-weight:700;font-size:2.1em;line-height:1.15;letter-spacing:-.03em;margin:.5em 0 .55em}
+.mini-phone p{font-size:.95em;line-height:1.7;color:#D3DEE9;margin:0}
+.mini-phone .pbtn{margin-top:auto;background:var(--blue);color:#fff;text-align:center;padding:.95em;border-radius:.45em;font-size:.92em;font-weight:700;letter-spacing:.05em;text-transform:uppercase}
+
+/* ---- Light board panels ---- */
+.type-specimens{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.type-specimens .aa{font-size:42px;line-height:1;margin:0;color:var(--ink)}
+.type-specimens .poppins .aa{font-family:Poppins,Inter,sans-serif;font-weight:700}
+.type-specimens .inter .aa{font-family:Inter,Arial,sans-serif;font-weight:400}
+.type-specimens strong{display:block;font-size:12px;margin:9px 0 5px;color:var(--ink)}
+.type-specimens small{display:block;font-size:9px;color:var(--slate);line-height:1.7;word-break:break-all}
+
+.card-mockups{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:24px}
+.bcard{border-radius:6px;padding:16px;min-height:118px;box-shadow:0 8px 22px rgba(13,27,42,.13)}
+.bcard.front{background:#0D1B2A;display:grid;place-items:center}
+.bcard.front img{width:100%;max-width:152px;height:auto}
+.bcard.back{background:#fff;border:1px solid #E2E8F0;font-size:9.5px;color:#475569;line-height:1.8}
+.bcard.back b{display:block;font-size:13px;color:var(--ink);line-height:1.3}
+.bcard.back em{display:block;font-style:normal;font-size:9px;margin-bottom:9px}
+
+@media(max-width:1050px){
+  .board-hero{grid-template-columns:1fr;gap:44px}
+  .brand-lockup{margin-inline:auto}
+  .board-eyebrow,.board-tagline{justify-content:center;text-align:center;margin-inline:auto}
+  .board-actions{justify-content:center}
+  .laptop{width:92%;margin-inline:auto}
+  .type-specimens,.card-mockups{grid-template-columns:1fr 1fr}
+}
+@media(max-width:760px){
+  .board-top{padding:125px 0 60px}
+  .laptop{width:100%}
+  .phone{position:static;width:44%;min-width:0;margin:22px auto 0}
+  .device-stage{padding-bottom:0}
+}
