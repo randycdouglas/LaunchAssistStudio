@@ -14,8 +14,12 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 
 builder.Services.Configure<EmailOptions>(builder.Configuration.GetSection(EmailOptions.SectionName));
 
-// Email provider is selected by configuration (Email:Provider = Mailtrap | Smtp).
+// Email provider is selected by configuration (Email:Provider = Resend | Mailtrap | Smtp).
 builder.Services.AddScoped<SmtpEmailSender>();
+builder.Services.AddHttpClient<ResendEmailSender>(client =>
+{
+    client.Timeout = TimeSpan.FromSeconds(30);
+});
 builder.Services.AddHttpClient<MailtrapEmailSender>(client =>
 {
     client.Timeout = TimeSpan.FromSeconds(30);
@@ -23,9 +27,9 @@ builder.Services.AddHttpClient<MailtrapEmailSender>(client =>
 builder.Services.AddScoped<IEmailSender>(sp =>
 {
     var emailOptions = sp.GetRequiredService<IOptions<EmailOptions>>().Value;
-    return emailOptions.UsesMailtrap
-        ? sp.GetRequiredService<MailtrapEmailSender>()
-        : sp.GetRequiredService<SmtpEmailSender>();
+    if (emailOptions.UsesResend) return sp.GetRequiredService<ResendEmailSender>();
+    if (emailOptions.UsesMailtrap) return sp.GetRequiredService<MailtrapEmailSender>();
+    return sp.GetRequiredService<SmtpEmailSender>();
 });
 
 // Anti-spam: throttle intake form submissions (POST /start-project) per client IP.

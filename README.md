@@ -56,26 +56,30 @@ The lead schema already includes `LeadNotes`, `LeadStatusHistory`, `AssignedTo`,
 - Per-IP rate limiting on the form POST (5 submissions / 10 minutes)
 - ASP.NET Core antiforgery tokens
 
-## Email: Mailtrap (default provider)
+## Email: Resend (default provider)
 
-Transactional mail goes through the **Mailtrap Email API** using Mailtrap's official .NET SDK. `Email:Provider` selects the implementation (`Mailtrap` or `Smtp`); both sit behind the same `IEmailSender` interface, so the intake form is unchanged.
+Transactional mail goes through the **Resend API**. `Email:Provider` selects the implementation — `Resend` (default), `Mailtrap`, or `Smtp` — and all three sit behind the same `IEmailSender` interface, so the intake form is unchanged.
 
-`MailtrapEmailSender` calls the Mailtrap send endpoint directly with `HttpClient` — **no SDK package**, so the project restores from nuget.org alone and needs no GitHub PAT on any machine that builds or deploys it.
+`ResendEmailSender` posts to the Resend endpoint directly with `HttpClient` — **no SDK package**, so the project restores from nuget.org alone.
 
 Only two settings are required:
 
 | Setting | Purpose |
 |---|---|
-| `Email:Provider` | `Mailtrap` (default) or `Smtp` |
-| `Email:Mailtrap:ApiToken` | Mailtrap → Settings → API Tokens |
+| `Email:Provider` | `Resend` (default), `Mailtrap`, or `Smtp` |
+| `Email:Resend:ApiKey` | Resend → API Keys (`re_...`) |
 
-`Email:Mailtrap:SendEndpoint` defaults to `https://send.api.mailtrap.io/api/send`. Point it at `https://sandbox.api.mailtrap.io/api/send/{inbox_id}` to capture mail in a sandbox inbox instead of delivering it.
+`Email:Resend:Tag` tags every message so this site's mail can be filtered in the dashboard — give each site its own value. `Email:Resend:SendEndpoint` defaults to `https://api.resend.com/emails`.
 
-Sending from `hello@launchassiststudio.com` requires verifying `launchassiststudio.com` in Mailtrap (SPF/DKIM/DMARC). Until that's done, use the sandbox endpoint or set `Email:FromAddress` to `hello@demomailtrap.co`, which only delivers to your own account address.
+Sending from `hello@launchassiststudio.com` requires verifying `launchassiststudio.com` in Resend (DKIM + SPF DNS records). Note that Cloudflare Email Routing already publishes an SPF record for inbound forwarding — there may only be **one** SPF record per domain, so the two `include:` values must be merged into a single line.
 
-Sent messages are visible at **https://mailtrap.io/sending/email_logs**.
+Sent messages are visible at **https://resend.com/emails**.
 
-If Mailtrap rejects a message the exception is logged and **the lead is still saved** — email failures never lose an inquiry.
+If the provider rejects a message the exception is logged and **the lead is still saved** — email failures never lose an inquiry.
+
+### Why not Mailtrap
+
+`MailtrapEmailSender` is still present and working; it is used by another property on this account. Mailtrap's free plan allows a single sending domain, and adding a second costs $15/month — Resend's free tier covers 3,000 emails/month across 3 domains, which suits this site's volume.
 
 ## Email configuration (secrets)
 
@@ -86,13 +90,13 @@ Production values live in `appsettings.Production.json`, which is **git-ignored*
 ```json
 {
   "Email": {
-    "Provider": "Mailtrap",
-    "Mailtrap": { "ApiToken": "YOUR_MAILTRAP_API_TOKEN" }
+    "Provider": "Resend",
+    "Resend": { "ApiKey": "YOUR_RESEND_API_KEY" }
   }
 }
 ```
 
-Every setting can also come from environment variables using `__` as the separator (`Email__Mailtrap__ApiToken`, `Email__Provider`), which is the better option on a shared host.
+Every setting can also come from environment variables using `__` as the separator (`Email__Resend__ApiKey`, `Email__Provider`), which is the better option on a shared host.
 
 ### SMTP alternative
 

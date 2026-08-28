@@ -4,10 +4,9 @@
     "DefaultConnection": "REPLACE_WITH_PRODUCTION_SQL_SERVER_CONNECTION_STRING"
   },
   "Email": {
-    "Provider": "Mailtrap",
-    "Mailtrap": {
-      "ApiToken": "REPLACE_WITH_MAILTRAP_API_TOKEN",
-      "Category": "Launch Assist Studio"
+    "Provider": "Resend",
+    "Resend": {
+      "ApiKey": "REPLACE_WITH_RESEND_API_KEY"
     },
     "FromAddress": "hello@launchassiststudio.com",
     "FromName": "Launch Assist Studio",
