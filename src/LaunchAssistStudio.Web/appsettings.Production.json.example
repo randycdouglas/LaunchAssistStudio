@@ -1,8 +1,6 @@
 {
-  "//": "Copy to appsettings.Production.json (git-ignored) and fill in. Never commit real values.",
-  "ConnectionStrings": {
-    "DefaultConnection": "REPLACE_WITH_PRODUCTION_SQL_SERVER_CONNECTION_STRING"
-  },
+  "//": "Copy to appsettings.Production.json on the server (git-ignored) and fill in.",
+  "//secrets": "Or set Email__Resend__ApiKey as an environment variable in the host control panel.",
   "Email": {
     "Provider": "Resend",
     "Resend": {

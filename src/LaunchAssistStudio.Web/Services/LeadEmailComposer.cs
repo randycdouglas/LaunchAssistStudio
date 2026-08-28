@@ -1,5 +1,5 @@
 using System.Text;
-using LaunchAssistStudio.Web.Data.Entities;
+using LaunchAssistStudio.Web.Models;
 
 namespace LaunchAssistStudio.Web.Services;
 
@@ -16,8 +16,7 @@ public static class LeadEmailComposer
         sb.AppendLine("==========================================");
         sb.AppendLine();
         sb.AppendLine($"Submitted (UTC): {lead.SubmittedAtUtc:yyyy-MM-dd HH:mm}");
-        sb.AppendLine($"Lead reference:  {lead.PublicId}");
-        sb.AppendLine($"Status:          {lead.Status}");
+        sb.AppendLine($"Reply to:        {lead.Email}");
         sb.AppendLine();
 
         Section(sb, "SERVICES REQUESTED");
@@ -74,7 +73,7 @@ public static class LeadEmailComposer
         Section(sb, "BUDGET & TIMING");
         Field(sb, "Budget", lead.Budget);
         Field(sb, "Timeline", lead.Timeline);
-        Field(sb, "Target launch date", lead.TargetLaunchDate?.ToString("yyyy-MM-dd"));
+        Field(sb, "Target launch date", lead.TargetLaunchDate);
 
         if (!string.IsNullOrWhiteSpace(lead.AdditionalNotes))
         {
@@ -102,9 +101,8 @@ public static class LeadEmailComposer
             2. We follow up within one business day{(string.IsNullOrWhiteSpace(lead.PreferredContact) ? "" : $" by {lead.PreferredContact.ToLowerInvariant()}")} to talk through goals, scope and options.
             3. If it's a fit, we outline a clear plan and pricing before any commitment.
 
-            Your reference number: {lead.PublicId}
-
             If anything comes to mind in the meantime, just reply to this email.
+
 
             Talk soon,
 

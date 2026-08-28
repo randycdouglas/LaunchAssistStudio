@@ -5,32 +5,13 @@
   <Folder Name="/Solution Items/">
     <File Path="README.md" />
     <File Path=".gitignore" />
-    <File Path="nuget.config" />
+    <File Path="MAILTRAP-EMAIL-HANDOFF.md" />
   </Folder>
   <!--
-    docs/ is the GENERATED static site published to GitHub Pages.
-    Do not hand-edit these files: scripts/export-docs.ps1 regenerates them
-    from the running .NET app and overwrites the folder. Change the Razor
-    Pages instead, then re-run the exporter.
+    docs/ is the GENERATED GitHub Pages preview. Do not hand-edit it:
+    scripts/export-docs.ps1 rebuilds it from wwwroot. Edit the site in
+    src/LaunchAssistStudio.Web/wwwroot instead.
   -->
-  <Folder Name="/docs (generated preview)/">
-    <File Path="docs/index.html" />
-    <File Path="docs/services.html" />
-    <File Path="docs/pricing.html" />
-    <File Path="docs/portfolio.html" />
-    <File Path="docs/about.html" />
-    <File Path="docs/contact.html" />
-    <File Path="docs/start-project.html" />
-    <File Path="docs/thank-you.html" />
-    <File Path="docs/web-design.html" />
-    <File Path="docs/ecommerce-development.html" />
-    <File Path="docs/custom-software-development.html" />
-    <File Path="docs/dotnet-development.html" />
-    <File Path="docs/sql-server-development.html" />
-    <File Path="docs/logo-branding.html" />
-    <File Path="docs/css/site.css" />
-    <File Path="docs/js/site.js" />
-  </Folder>
   <Folder Name="/scripts/">
     <File Path="scripts/export-docs.ps1" />
     <File Path="scripts/make-icons.ps1" />

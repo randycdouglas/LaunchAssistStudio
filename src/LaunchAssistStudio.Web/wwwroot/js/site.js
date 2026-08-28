@@ -34,3 +34,81 @@
     serviceCheckboxes.forEach(x => x.addEventListener("change", updateConditionalSections));
     updateConditionalSections();
 })();
+
+// ---------------------------------------------------------------------------
+// Intake form -> POST /api/contact
+// The server re-validates everything; this only shapes the payload and renders
+// whatever the API reports back.
+// ---------------------------------------------------------------------------
+(() => {
+    const form = document.getElementById("contactForm");
+    if (!form) return;
+
+    const summary = form.querySelector(".validation-summary");
+    const submitButton = form.querySelector('button[type="submit"]');
+
+    const escapeHtml = (s) => String(s).replace(/[&<>"']/g, c =>
+        ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+
+    const setSummary = (message, errors) => {
+        if (!summary) return;
+        const items = errors && Object.keys(errors).length
+            ? Object.values(errors)
+            : (message ? [message] : []);
+        summary.innerHTML = items.length
+            ? "<ul>" + items.map(t => `<li>${escapeHtml(t)}</li>`).join("") + "</ul>"
+            : "";
+        summary.classList.toggle("validation-summary-valid", items.length === 0);
+        if (items.length) summary.scrollIntoView({ behavior: "smooth", block: "center" });
+    };
+
+    form.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        setSummary(null, null);
+
+        const data = new FormData(form);
+        const payload = {};
+        for (const [key, value] of data.entries()) {
+            if (key === "Services") continue;
+            payload[key] = value;
+        }
+        payload.Services = data.getAll("Services");
+        payload.Agreement = form.querySelector('[name="Agreement"]')?.checked === true;
+
+        const token = form.querySelector('[name="cf-turnstile-response"]');
+        if (token) payload.TurnstileToken = token.value;
+
+        const original = submitButton ? submitButton.textContent : null;
+        if (submitButton) {
+            submitButton.disabled = true;
+            submitButton.textContent = "Sending...";
+        }
+
+        try {
+            const response = await fetch("/api/contact", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(payload),
+            });
+
+            let result = null;
+            try { result = await response.json(); } catch { /* non-JSON error page */ }
+
+            if (response.ok && result && result.success) {
+                window.location.href = "/start-project/thank-you";
+                return;
+            }
+
+            setSummary(
+                (result && result.message) || "Sorry - something went wrong. Please email hello@launchassiststudio.com.",
+                result && result.errors);
+        } catch {
+            setSummary("We couldn't reach the server. Please check your connection, or email hello@launchassiststudio.com.", null);
+        } finally {
+            if (submitButton) {
+                submitButton.disabled = false;
+                submitButton.textContent = original;
+            }
+        }
+    });
+})();

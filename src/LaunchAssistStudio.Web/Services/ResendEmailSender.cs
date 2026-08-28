@@ -7,9 +7,8 @@ using Microsoft.Extensions.Options;
 namespace LaunchAssistStudio.Web.Services;
 
 /// <summary>
-/// Sends transactional mail through the Resend API over plain HTTPS - no SDK
-/// dependency, so the project restores from nuget.org alone. Selected with
-/// <c>Email:Provider = "Resend"</c>.
+/// Sends through the Resend API over plain HTTPS — no SDK package, so the project
+/// restores from nuget.org alone. Selected with <c>Email:Provider = "Resend"</c>.
 /// </summary>
 public class ResendEmailSender(
     HttpClient httpClient,
@@ -23,15 +22,20 @@ public class ResendEmailSender(
         DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
     };
 
-    public async Task SendAsync(string toAddress, string? toName, string subject, string textBody, CancellationToken cancellationToken = default)
+    public async Task SendAsync(
+        string toAddress,
+        string? toName,
+        string subject,
+        string textBody,
+        string? replyTo = null,
+        CancellationToken cancellationToken = default)
     {
         var apiKey = _options.Resend.ApiKey;
-        if (string.IsNullOrWhiteSpace(apiKey))
+        if (EmailOptions.IsUnset(apiKey))
         {
-            logger.LogWarning("Resend API key is not configured; skipping email \"{Subject}\" to {To}. " +
-                              "Set Email:Resend:ApiKey in appsettings.Production.json or the " +
-                              "Email__Resend__ApiKey environment variable.", subject, toAddress);
-            return;
+            throw new InvalidOperationException(
+                "Email:Resend:ApiKey is not configured. Set it in appsettings.Production.json " +
+                "or the Email__Resend__ApiKey environment variable.");
         }
 
         cancellationToken.ThrowIfCancellationRequested();
@@ -41,6 +45,7 @@ public class ResendEmailSender(
             // Resend takes a single string, optionally as "Name <address>".
             From = FormatAddress(_options.FromAddress, _options.FromName),
             To = [toAddress],
+            ReplyTo = string.IsNullOrWhiteSpace(replyTo) ? null : replyTo,
             Subject = subject,
             Text = textBody,
             Tags = string.IsNullOrWhiteSpace(_options.Resend.Tag)
@@ -64,14 +69,14 @@ public class ResendEmailSender(
                 $"Resend rejected the message with HTTP {(int)response.StatusCode} ({response.ReasonPhrase}): {body}");
         }
 
-        logger.LogInformation("Resend accepted \"{Subject}\" for {To} (id: {MessageId}). Logs: {LogUrl}",
-            subject, toAddress, ReadId(body) ?? "none returned", "https://resend.com/emails");
+        logger.LogInformation("Resend accepted \"{Subject}\" for {To} (id: {MessageId}).",
+            subject, toAddress, ReadId(body) ?? "none returned");
     }
 
     private static string FormatAddress(string address, string? name) =>
         string.IsNullOrWhiteSpace(name) ? address : $"{Sanitize(name)} <{address}>";
 
-    /// <summary>Strips characters that would break the "Name &lt;addr&gt;" header or a tag value.</summary>
+    /// <summary>Strips characters that would break a "Name &lt;addr&gt;" header or a tag value.</summary>
     private static string Sanitize(string value) =>
         new(value.Where(c => c is not ('<' or '>' or '"' or '\r' or '\n' or ',')).ToArray());
 
@@ -83,7 +88,7 @@ public class ResendEmailSender(
         }
         catch (JsonException)
         {
-            // A 2xx with an unexpected shape still means accepted; don't fail the send.
+            // A 2xx with an unexpected shape still means accepted.
             return null;
         }
     }
@@ -92,6 +97,7 @@ public class ResendEmailSender(
     {
         [JsonPropertyName("from")] public required string From { get; init; }
         [JsonPropertyName("to")] public required string[] To { get; init; }
+        [JsonPropertyName("reply_to")] public string? ReplyTo { get; init; }
         [JsonPropertyName("subject")] public required string Subject { get; init; }
         [JsonPropertyName("text")] public required string Text { get; init; }
         [JsonPropertyName("tags")] public ResendTag[]? Tags { get; init; }
