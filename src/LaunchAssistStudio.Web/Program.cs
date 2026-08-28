@@ -3,6 +3,7 @@ using LaunchAssistStudio.Web.Data;
 using LaunchAssistStudio.Web.Services;
 using Microsoft.AspNetCore.RateLimiting;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,7 +13,19 @@ builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 builder.Services.Configure<EmailOptions>(builder.Configuration.GetSection(EmailOptions.SectionName));
-builder.Services.AddScoped<IEmailSender, SmtpEmailSender>();
+
+// Email provider is selected by configuration (Email:Provider = Mailtrap | Smtp).
+// The Mailtrap client factory owns an HttpClient, so it is a singleton.
+builder.Services.AddSingleton<MailtrapClientProvider>();
+builder.Services.AddScoped<SmtpEmailSender>();
+builder.Services.AddScoped<MailtrapEmailSender>();
+builder.Services.AddScoped<IEmailSender>(sp =>
+{
+    var emailOptions = sp.GetRequiredService<IOptions<EmailOptions>>().Value;
+    return emailOptions.UsesMailtrap
+        ? sp.GetRequiredService<MailtrapEmailSender>()
+        : sp.GetRequiredService<SmtpEmailSender>();
+});
 
 // Anti-spam: throttle intake form submissions (POST /start-project) per client IP.
 builder.Services.AddRateLimiter(options =>

@@ -480,3 +480,9 @@ $RECYCLE.BIN/
 
 # Vim temporary swap files
 *.swp
+
+# Secrets — environment-specific config holds API tokens and connection
+# strings and must never be committed (this repository is public).
+appsettings.Production.json
+appsettings.*.Local.json
+*.pubxml.user

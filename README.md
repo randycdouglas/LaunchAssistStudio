@@ -56,9 +56,46 @@ The lead schema already includes `LeadNotes`, `LeadStatusHistory`, `AssignedTo`,
 - Per-IP rate limiting on the form POST (5 submissions / 10 minutes)
 - ASP.NET Core antiforgery tokens
 
+## Email: Mailtrap (default provider)
+
+Transactional mail goes through the **Mailtrap Email API** using Mailtrap's official .NET SDK. `Email:Provider` selects the implementation (`Mailtrap` or `Smtp`); both sit behind the same `IEmailSender` interface, so the intake form is unchanged.
+
+The official SDK is published to **Mailtrap's GitHub Packages feed, not nuget.org** (the similarly-named package on nuget.org is from an unrelated publisher). The feed is declared in `nuget.config`; credentials are per-machine and never committed. On each dev machine, build server and deploy host, run once:
+
+```bash
+dotnet nuget add source https://nuget.pkg.github.com/mailtrap/index.json --name github-mailtrap --username GITHUB_USERNAME --password GITHUB_PAT --store-password-in-clear-text
+```
+
+Then restore normally:
+
+```bash
+dotnet restore
+```
+
+> Because the feed requires authentication, `dotnet restore` fails with **401 Unauthorized** until that source is registered. If you would rather not gate the build behind a GitHub PAT, the same functionality can be implemented against Mailtrap's REST endpoint with no package dependency.
+
+Sent messages are visible at **https://mailtrap.io/sending/email_logs**.
+
 ## Email configuration (secrets)
 
-SMTP settings are **not** stored in source control. Until configured, the app logs a warning and skips sending (leads are still saved). Configure via user secrets in development:
+Secrets are **not** stored in source control. Until configured, the app logs a warning and skips sending — **leads are still saved to SQL Server either way**.
+
+Production values live in `appsettings.Production.json`, which is **git-ignored** (`appsettings.Production.json.example` is the committed template):
+
+```json
+{
+  "Email": {
+    "Provider": "Mailtrap",
+    "Mailtrap": { "ApiToken": "YOUR_MAILTRAP_API_TOKEN" }
+  }
+}
+```
+
+Every setting can also come from environment variables using `__` as the separator (`Email__Mailtrap__ApiToken`, `Email__Provider`), which is the better option on a shared host.
+
+### SMTP alternative
+
+Set `Email:Provider` to `Smtp` and configure via user secrets in development:
 
 ```bash
 cd src/LaunchAssistStudio.Web

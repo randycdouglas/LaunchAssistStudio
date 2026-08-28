@@ -1,0 +1,16 @@
+{
+  "//": "Copy to appsettings.Production.json (git-ignored) and fill in. Never commit real values.",
+  "ConnectionStrings": {
+    "DefaultConnection": "REPLACE_WITH_PRODUCTION_SQL_SERVER_CONNECTION_STRING"
+  },
+  "Email": {
+    "Provider": "Mailtrap",
+    "Mailtrap": {
+      "ApiToken": "REPLACE_WITH_MAILTRAP_API_TOKEN",
+      "Category": "Launch Assist Studio"
+    },
+    "FromAddress": "hello@launchassiststudio.com",
+    "FromName": "Launch Assist Studio",
+    "InternalNotificationAddress": "hello@launchassiststudio.com"
+  }
+}
