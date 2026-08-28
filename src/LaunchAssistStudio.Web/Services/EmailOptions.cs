@@ -48,6 +48,13 @@ public class MailtrapOptions
 
     /// <summary>Groups messages in the Mailtrap dashboard.</summary>
     public string Category { get; set; } = "Launch Assist Studio";
+
+    /// <summary>
+    /// Live sending endpoint. Point at
+    /// https://sandbox.api.mailtrap.io/api/send/{inbox_id} to capture mail in a
+    /// Mailtrap sandbox inbox instead of delivering it.
+    /// </summary>
+    public string SendEndpoint { get; set; } = "https://send.api.mailtrap.io/api/send";
 }
 
 public static class EmailProviders

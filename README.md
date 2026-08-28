@@ -60,21 +60,22 @@ The lead schema already includes `LeadNotes`, `LeadStatusHistory`, `AssignedTo`,
 
 Transactional mail goes through the **Mailtrap Email API** using Mailtrap's official .NET SDK. `Email:Provider` selects the implementation (`Mailtrap` or `Smtp`); both sit behind the same `IEmailSender` interface, so the intake form is unchanged.
 
-The official SDK is published to **Mailtrap's GitHub Packages feed, not nuget.org** (the similarly-named package on nuget.org is from an unrelated publisher). The feed is declared in `nuget.config`; credentials are per-machine and never committed. On each dev machine, build server and deploy host, run once:
+`MailtrapEmailSender` calls the Mailtrap send endpoint directly with `HttpClient` — **no SDK package**, so the project restores from nuget.org alone and needs no GitHub PAT on any machine that builds or deploys it.
 
-```bash
-dotnet nuget add source https://nuget.pkg.github.com/mailtrap/index.json --name github-mailtrap --username GITHUB_USERNAME --password GITHUB_PAT --store-password-in-clear-text
-```
+Only two settings are required:
 
-Then restore normally:
+| Setting | Purpose |
+|---|---|
+| `Email:Provider` | `Mailtrap` (default) or `Smtp` |
+| `Email:Mailtrap:ApiToken` | Mailtrap → Settings → API Tokens |
 
-```bash
-dotnet restore
-```
+`Email:Mailtrap:SendEndpoint` defaults to `https://send.api.mailtrap.io/api/send`. Point it at `https://sandbox.api.mailtrap.io/api/send/{inbox_id}` to capture mail in a sandbox inbox instead of delivering it.
 
-> Because the feed requires authentication, `dotnet restore` fails with **401 Unauthorized** until that source is registered. If you would rather not gate the build behind a GitHub PAT, the same functionality can be implemented against Mailtrap's REST endpoint with no package dependency.
+Sending from `hello@launchassiststudio.com` requires verifying `launchassiststudio.com` in Mailtrap (SPF/DKIM/DMARC). Until that's done, use the sandbox endpoint or set `Email:FromAddress` to `hello@demomailtrap.co`, which only delivers to your own account address.
 
 Sent messages are visible at **https://mailtrap.io/sending/email_logs**.
+
+If Mailtrap rejects a message the exception is logged and **the lead is still saved** — email failures never lose an inquiry.
 
 ## Email configuration (secrets)
 

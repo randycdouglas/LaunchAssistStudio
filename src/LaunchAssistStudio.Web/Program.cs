@@ -15,10 +15,11 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 builder.Services.Configure<EmailOptions>(builder.Configuration.GetSection(EmailOptions.SectionName));
 
 // Email provider is selected by configuration (Email:Provider = Mailtrap | Smtp).
-// The Mailtrap client factory owns an HttpClient, so it is a singleton.
-builder.Services.AddSingleton<MailtrapClientProvider>();
 builder.Services.AddScoped<SmtpEmailSender>();
-builder.Services.AddScoped<MailtrapEmailSender>();
+builder.Services.AddHttpClient<MailtrapEmailSender>(client =>
+{
+    client.Timeout = TimeSpan.FromSeconds(30);
+});
 builder.Services.AddScoped<IEmailSender>(sp =>
 {
     var emailOptions = sp.GetRequiredService<IOptions<EmailOptions>>().Value;
