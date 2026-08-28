@@ -24,6 +24,19 @@ public class EmailOptions
     public bool UsesSmtp =>
         string.Equals(Provider, EmailProviders.Smtp, StringComparison.OrdinalIgnoreCase);
 
+    public bool UsesResend =>
+        string.Equals(Provider, EmailProviders.Resend, StringComparison.OrdinalIgnoreCase);
+
+    /// <summary>
+    /// False when Provider is blank or a stale/typo'd value. Without this an
+    /// unrecognised provider would quietly fall back to Resend while /api/health
+    /// still reported the bogus name.
+    /// </summary>
+    public bool IsKnownProvider => UsesSmtp || UsesResend;
+
+    /// <summary>The transport actually used, whatever Provider happens to say.</summary>
+    public string ResolvedProvider => UsesSmtp ? EmailProviders.Smtp : EmailProviders.Resend;
+
     public bool IsConfigured => MissingSettings().Count == 0;
 
     /// <summary>
@@ -34,6 +47,8 @@ public class EmailOptions
     public List<string> MissingSettings()
     {
         var missing = new List<string>();
+
+        if (!IsKnownProvider) missing.Add("Email:Provider (unrecognised — use \"Resend\" or \"Smtp\")");
 
         if (IsUnset(FromAddress)) missing.Add("Email:FromAddress");
         if (IsUnset(InternalNotificationAddress)) missing.Add("Email:InternalNotificationAddress");

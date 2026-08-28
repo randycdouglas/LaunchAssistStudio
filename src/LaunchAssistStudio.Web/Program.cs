@@ -89,7 +89,10 @@ app.MapGet("/api/health", (IOptions<EmailOptions> options) =>
     return Results.Ok(new
     {
         status = email.IsConfigured ? "ok" : "unconfigured",
-        transport = email.Provider,
+        // The transport actually in use — not the raw Provider string, which may
+        // be stale or misspelled.
+        transport = email.ResolvedProvider,
+        configuredProvider = email.Provider,
         from = email.FromAddress,
         deliversTo = email.InternalNotificationAddress,
         missingSettings = email.MissingSettings(),
