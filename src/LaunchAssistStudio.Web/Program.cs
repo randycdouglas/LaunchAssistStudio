@@ -78,7 +78,30 @@ app.Use(async (context, next) =>
 });
 
 app.UseDefaultFiles();
-app.UseStaticFiles();
+
+// Without an explicit Cache-Control, browsers fall back to heuristic caching and
+// can serve stale markup or CSS for a long time after a deploy. The pages carry
+// no fingerprint in their URLs, so make HTML/CSS/JS revalidate every time —
+// ETags turn that into a cheap 304 — and let the rarely-changing binary assets
+// cache properly.
+app.UseStaticFiles(new StaticFileOptions
+{
+    OnPrepareResponse = ctx =>
+    {
+        var path = ctx.File.Name;
+        var revalidate =
+            path.EndsWith(".html", StringComparison.OrdinalIgnoreCase) ||
+            path.EndsWith(".css", StringComparison.OrdinalIgnoreCase) ||
+            path.EndsWith(".js", StringComparison.OrdinalIgnoreCase) ||
+            path.EndsWith(".webmanifest", StringComparison.OrdinalIgnoreCase) ||
+            path.EndsWith(".xml", StringComparison.OrdinalIgnoreCase);
+
+        ctx.Context.Response.Headers.CacheControl = revalidate
+            ? "no-cache, must-revalidate"
+            : "public, max-age=604800";
+    },
+});
+
 app.UseRateLimiter();
 
 // Reports which transport is active and what is missing. Names only, never
@@ -156,8 +179,12 @@ app.MapPost("/api/contact", async (
         logger.LogError(ex, "Contact form: acknowledgement to {Email} failed.", lead.Email);
     }
 
-    logger.LogInformation("Contact form: inquiry from {Email} delivered.", lead.Email);
-    return Results.Ok(new ContactResponse(true, "Thanks — your project inquiry is on its way."));
+    logger.LogInformation("Contact form: {Kind} enquiry from {Email} delivered.",
+        lead.IsGeneral ? "general" : "project", lead.Email);
+
+    return Results.Ok(new ContactResponse(true, lead.IsGeneral
+        ? "Thanks — your message is on its way."
+        : "Thanks — your project inquiry is on its way."));
 })
 .RequireRateLimiting("contact");
 

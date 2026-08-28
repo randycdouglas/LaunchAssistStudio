@@ -6,6 +6,9 @@ namespace LaunchAssistStudio.Web.Models;
 /// </summary>
 public class Lead
 {
+    /// <summary>"project" (full intake) or "general" (short contact form).</summary>
+    public bool IsGeneral { get; init; }
+
     public DateTime SubmittedAtUtc { get; init; }
     public string ServicesRequested { get; init; } = "";
 

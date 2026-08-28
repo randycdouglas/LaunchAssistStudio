@@ -72,6 +72,7 @@
             if (key === "Services") continue;
             payload[key] = value;
         }
+        payload.Kind = form.dataset.kind || "project";
         payload.Services = data.getAll("Services");
         payload.Agreement = form.querySelector('[name="Agreement"]')?.checked === true;
 
@@ -95,7 +96,20 @@
             try { result = await response.json(); } catch { /* non-JSON error page */ }
 
             if (response.ok && result && result.success) {
-                window.location.href = "/start-project/thank-you";
+                if (payload.Kind === "general") {
+                    // Short enquiry: confirm in place rather than sending the visitor
+                    // to a page that talks about project inquiries.
+                    const card = document.createElement("div");
+                    card.className = "success-card";
+                    card.innerHTML =
+                        '<span class="success-icon">&#10003;</span>' +
+                        "<h2>Message sent.</h2>" +
+                        "<p>Thanks &mdash; we\x27ll get back to you within one business day.</p>";
+                    form.replaceWith(card);
+                    window.scrollTo({ top: 0, behavior: "smooth" });
+                } else {
+                    window.location.href = "/start-project/thank-you";
+                }
                 return;
             }
 

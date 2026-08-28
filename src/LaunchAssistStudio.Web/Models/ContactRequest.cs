@@ -9,6 +9,16 @@ namespace LaunchAssistStudio.Web.Models;
 /// </summary>
 public class ContactRequest
 {
+    /// <summary>
+    /// <c>project</c> (the full intake form) or <c>general</c> (the short contact
+    /// form). A general enquiry asks only for name, email and a message — it would
+    /// be hostile to demand a service list and a disclaimer for "what do you charge?"
+    /// </summary>
+    public string? Kind { get; set; }
+
+    public bool IsGeneral =>
+        string.Equals(Kind, "general", StringComparison.OrdinalIgnoreCase);
+
     public List<string>? Services { get; set; }
 
     public string? BusinessName { get; set; }
@@ -72,13 +82,23 @@ public class ContactRequest
         else if (!IsValidEmail(email)) errors["email"] = "Please enter a valid email address.";
 
         var project = Clean(ProjectDescription, LongText, multiline: true);
-        if (string.IsNullOrWhiteSpace(project)) errors["projectDescription"] = "Please tell us what you're trying to build or improve.";
-        else if (project.Length < 10) errors["projectDescription"] = "Please give us a little more detail.";
+        if (string.IsNullOrWhiteSpace(project))
+        {
+            errors["projectDescription"] = IsGeneral
+                ? "Please enter your message."
+                : "Please tell us what you're trying to build or improve.";
+        }
+        else if (project.Length < 10)
+        {
+            errors["projectDescription"] = "Please give us a little more detail.";
+        }
 
-        var services = SelectedServices();
-        if (services.Count == 0) errors["services"] = "Please select at least one service.";
-
-        if (!Agreement) errors["agreement"] = "Please confirm you understand before submitting.";
+        // Service selection and the disclaimer only apply to the full intake form.
+        if (!IsGeneral)
+        {
+            if (SelectedServices().Count == 0) errors["services"] = "Please select at least one service.";
+            if (!Agreement) errors["agreement"] = "Please confirm you understand before submitting.";
+        }
 
         var website = Clean(CurrentWebsite, MediumText);
         if (!string.IsNullOrWhiteSpace(website) &&
@@ -105,6 +125,7 @@ public class ContactRequest
 
     public Lead ToLead() => new()
     {
+        IsGeneral = IsGeneral,
         SubmittedAtUtc = DateTime.UtcNow,
         ServicesRequested = string.Join("; ", SelectedServices()),
 

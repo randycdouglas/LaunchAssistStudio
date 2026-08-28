@@ -8,6 +8,11 @@ public static class LeadEmailComposer
 {
     public static (string Subject, string Body) BuildInternalNotification(Lead lead)
     {
+        if (lead.IsGeneral)
+        {
+            return BuildGeneralEnquiry(lead);
+        }
+
         var subject = $"New Lead: {lead.ContactName}" +
                       (string.IsNullOrWhiteSpace(lead.BusinessName) ? "" : $" — {lead.BusinessName}");
 
@@ -84,8 +89,55 @@ public static class LeadEmailComposer
         return (subject, sb.ToString());
     }
 
+    /// <summary>Short form for a general question — no project sections to pad it out.</summary>
+    private static (string Subject, string Body) BuildGeneralEnquiry(Lead lead)
+    {
+        var subject = $"Website enquiry: {lead.ContactName}";
+
+        var sb = new StringBuilder();
+        sb.AppendLine("GENERAL ENQUIRY — LAUNCH ASSIST STUDIO");
+        sb.AppendLine("======================================");
+        sb.AppendLine();
+        sb.AppendLine($"Submitted (UTC): {lead.SubmittedAtUtc:yyyy-MM-dd HH:mm}");
+        sb.AppendLine($"Reply to:        {lead.Email}");
+        sb.AppendLine();
+
+        Section(sb, "CONTACT");
+        Field(sb, "Name", lead.ContactName);
+        Field(sb, "Email", lead.Email);
+        Field(sb, "Phone", lead.Phone);
+
+        Section(sb, "MESSAGE");
+        sb.AppendLine(lead.ProjectDescription);
+
+        return (subject, sb.ToString());
+    }
+
     public static (string Subject, string Body) BuildProspectAcknowledgement(Lead lead)
     {
+        if (lead.IsGeneral)
+        {
+            var firstNameGeneral = lead.ContactName.Split(' ', StringSplitOptions.RemoveEmptyEntries).FirstOrDefault() ?? lead.ContactName;
+            return ("Thanks for getting in touch — Launch Assist Studio", $"""
+                Hi {firstNameGeneral},
+
+                Thanks for reaching out to Launch Assist Studio. We've received your message
+                and will get back to you within one business day.
+
+                If it turns out you'd like a quote, the project form below captures the
+                details we'd need up front:
+
+                https://launchassiststudio.com/start-project
+
+                Talk soon,
+
+                Launch Assist Studio
+                Websites • Custom Software • E-Commerce • Branding
+                hello@launchassiststudio.com
+                launchassiststudio.com
+                """);
+        }
+
         const string subject = "We received your project inquiry — Launch Assist Studio";
 
         var firstName = lead.ContactName.Split(' ', StringSplitOptions.RemoveEmptyEntries).FirstOrDefault() ?? lead.ContactName;
