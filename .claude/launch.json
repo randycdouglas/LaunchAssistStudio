@@ -6,6 +6,12 @@
       "runtimeExecutable": "dotnet",
       "runtimeArgs": ["run", "--project", "src/LaunchAssistStudio.Web", "--launch-profile", "http", "--no-launch-profile-browser"],
       "port": 5065
+    },
+    {
+      "name": "docs-preview",
+      "runtimeExecutable": "dotnet",
+      "runtimeArgs": ["tool", "run", "dotnet-serve", "--directory", "docs", "--port", "5099"],
+      "port": 5099
     }
   ]
 }

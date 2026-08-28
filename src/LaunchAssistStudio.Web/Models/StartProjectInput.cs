@@ -45,6 +45,8 @@ public class StartProjectInput
     public string? EcommerceSubscriptions { get; set; }
     [MaxLength(600)] public string? EcommerceIntegrations { get; set; }
     public string? EcommerceMigration { get; set; }
+    public string? EcommerceTaxes { get; set; }
+    public string? EcommercePaymentProvider { get; set; }
 
     // 05 — Software details (shown when a software/.NET/SQL/API service is selected)
     public string? SoftwareApplicationType { get; set; }
@@ -53,11 +55,16 @@ public class StartProjectInput
     public string? SoftwareLoginRequirements { get; set; }
     [MaxLength(600)] public string? SoftwareIntegrations { get; set; }
     public string? SoftwareDataMigration { get; set; }
+    [MaxLength(600)] public string? SoftwareMigrationNeeds { get; set; }
     [MaxLength(8000)] public string? SoftwareBusinessProblem { get; set; }
 
     // 06 — Budget & timing
     public string? Budget { get; set; }
     public string? Timeline { get; set; }
+
+    [DataType(DataType.Date)]
+    [Display(Name = "Target launch date")]
+    public DateOnly? TargetLaunchDate { get; set; }
 
     // 07 — Contact
     [Required(ErrorMessage = "Please enter your name.")]
@@ -115,6 +122,12 @@ public static class IntakeOptions
 
     public static readonly string[] MigrationOptions =
         ["Yes — migrate from an existing store", "No — starting fresh", "Not sure yet"];
+
+    public static readonly string[] TaxOptions =
+        ["Yes — we need sales tax handled", "No — tax isn't a factor", "Not sure yet"];
+
+    public static readonly string[] PaymentProviders =
+        ["Stripe", "PayPal", "Square", "Authorize.Net", "A provider you recommend", "Not sure yet"];
 
     public static readonly string[] SoftwareTypes =
     [

@@ -167,3 +167,9 @@ input.input-validation-error,textarea.input-validation-error,select.input-valida
   .section-light{padding:60px 0}
   .section-navy{padding:70px 0}
 }
+
+/* Accessibility: skip link + visible focus states */
+.skip-link{position:absolute;left:-9999px;top:0;z-index:100;background:var(--blue);color:#fff;padding:12px 18px;border-radius:0 0 6px 0;font-size:13px;font-weight:700}
+.skip-link:focus{left:0}
+a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible,.check-card:focus-within{outline:3px solid #5CC2FF;outline-offset:2px;border-radius:3px}
+.section-light a:focus-visible,.section-light button:focus-visible{outline-color:#1646B7}

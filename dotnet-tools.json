@@ -8,6 +8,13 @@
         "dotnet-ef"
       ],
       "rollForward": false
+    },
+    "dotnet-serve": {
+      "version": "1.10.194",
+      "commands": [
+        "dotnet-serve"
+      ],
+      "rollForward": false
     }
   }
 }

@@ -61,6 +61,8 @@ public class StartProjectModel(
         Input.EcommerceShipping = Whitelist(Input.EcommerceShipping, IntakeOptions.ShippingOptions);
         Input.EcommerceSubscriptions = Whitelist(Input.EcommerceSubscriptions, IntakeOptions.YesNoNotSure);
         Input.EcommerceMigration = Whitelist(Input.EcommerceMigration, IntakeOptions.MigrationOptions);
+        Input.EcommerceTaxes = Whitelist(Input.EcommerceTaxes, IntakeOptions.TaxOptions);
+        Input.EcommercePaymentProvider = Whitelist(Input.EcommercePaymentProvider, IntakeOptions.PaymentProviders);
         Input.SoftwareApplicationType = Whitelist(Input.SoftwareApplicationType, IntakeOptions.SoftwareTypes);
         Input.SoftwareNewOrExisting = Whitelist(Input.SoftwareNewOrExisting, IntakeOptions.NewOrExisting);
         Input.SoftwareLoginRequirements = Whitelist(Input.SoftwareLoginRequirements, IntakeOptions.LoginRequirements);
@@ -104,6 +106,8 @@ public class StartProjectModel(
             EcommerceSubscriptions = Input.EcommerceSubscriptions,
             EcommerceIntegrations = Clean(Input.EcommerceIntegrations),
             EcommerceMigration = Input.EcommerceMigration,
+            EcommerceTaxes = Input.EcommerceTaxes,
+            EcommercePaymentProvider = Input.EcommercePaymentProvider,
 
             SoftwareApplicationType = Input.SoftwareApplicationType,
             SoftwareNewOrExisting = Input.SoftwareNewOrExisting,
@@ -111,10 +115,12 @@ public class StartProjectModel(
             SoftwareLoginRequirements = Input.SoftwareLoginRequirements,
             SoftwareIntegrations = Clean(Input.SoftwareIntegrations),
             SoftwareDataMigration = Input.SoftwareDataMigration,
+            SoftwareMigrationNeeds = Clean(Input.SoftwareMigrationNeeds),
             SoftwareBusinessProblem = Clean(Input.SoftwareBusinessProblem),
 
             Budget = Input.Budget,
             Timeline = Input.Timeline,
+            TargetLaunchDate = Input.TargetLaunchDate,
 
             ContactName = Input.ContactName.Trim(),
             Email = Input.Email.Trim(),

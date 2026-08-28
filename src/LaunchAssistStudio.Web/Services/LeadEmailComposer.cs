@@ -40,7 +40,8 @@ public static class LeadEmailComposer
 
         if (HasAny(lead.EcommerceSellType, lead.EcommerceProductCount, lead.EcommerceExistingPlatform,
                 lead.EcommerceInventoryNeeds, lead.EcommerceShipping, lead.EcommerceSubscriptions,
-                lead.EcommerceIntegrations, lead.EcommerceMigration))
+                lead.EcommerceIntegrations, lead.EcommerceMigration, lead.EcommerceTaxes,
+                lead.EcommercePaymentProvider))
         {
             Section(sb, "E-COMMERCE DETAILS");
             Field(sb, "What they sell", lead.EcommerceSellType);
@@ -48,14 +49,16 @@ public static class LeadEmailComposer
             Field(sb, "Existing platform", lead.EcommerceExistingPlatform);
             Field(sb, "Inventory needs", lead.EcommerceInventoryNeeds);
             Field(sb, "Shipping", lead.EcommerceShipping);
+            Field(sb, "Sales tax", lead.EcommerceTaxes);
             Field(sb, "Subscriptions", lead.EcommerceSubscriptions);
+            Field(sb, "Payment provider", lead.EcommercePaymentProvider);
             Field(sb, "Integrations", lead.EcommerceIntegrations);
             Field(sb, "Migration", lead.EcommerceMigration);
         }
 
         if (HasAny(lead.SoftwareApplicationType, lead.SoftwareNewOrExisting, lead.SoftwareCurrentTechnology,
                 lead.SoftwareLoginRequirements, lead.SoftwareIntegrations, lead.SoftwareDataMigration,
-                lead.SoftwareBusinessProblem))
+                lead.SoftwareMigrationNeeds, lead.SoftwareBusinessProblem))
         {
             Section(sb, "SOFTWARE DETAILS");
             Field(sb, "Application type", lead.SoftwareApplicationType);
@@ -63,13 +66,15 @@ public static class LeadEmailComposer
             Field(sb, "Current technology", lead.SoftwareCurrentTechnology);
             Field(sb, "Login/accounts", lead.SoftwareLoginRequirements);
             Field(sb, "Integrations", lead.SoftwareIntegrations);
-            Field(sb, "Data / migration", lead.SoftwareDataMigration);
+            Field(sb, "Existing data", lead.SoftwareDataMigration);
+            Field(sb, "Migration needs", lead.SoftwareMigrationNeeds);
             Field(sb, "Business problem & workflow", lead.SoftwareBusinessProblem);
         }
 
         Section(sb, "BUDGET & TIMING");
         Field(sb, "Budget", lead.Budget);
         Field(sb, "Timeline", lead.Timeline);
+        Field(sb, "Target launch date", lead.TargetLaunchDate?.ToString("yyyy-MM-dd"));
 
         if (!string.IsNullOrWhiteSpace(lead.AdditionalNotes))
         {

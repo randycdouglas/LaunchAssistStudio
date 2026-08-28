@@ -86,4 +86,18 @@ The visual source of truth is `LaunchAssistStudio-Approved-Design-v2` (sibling f
 
 `wwwroot/css/site.css` is that v2 stylesheet verbatim, plus an appended "Production extensions" block that builds page heroes, pricing cards, the intake form and validation styling **from the same v2 tokens** (`--navy #0D1B2A`, `--blue #2563EB`, `--slate #475569`, `--light #CBD5E1`, `--white #F8FAFC`; Poppins headings, Inter body). Do not restyle — extend the existing design system.
 
-A static copy of the v2 reference is published under `docs/` for GitHub Pages preview.
+## Static preview (`docs/` → GitHub Pages)
+
+`docs/` holds a **full multi-page static export of the real site** — every page, not just the homepage — published at https://randycdouglas.github.io/LaunchAssistStudio/ (Pages source: branch `main`, folder `/docs`).
+
+It is generated from the running .NET app so the preview can never drift from production. To regenerate after design changes:
+
+```bash
+dotnet run --project src/LaunchAssistStudio.Web
+```
+
+…then, with the app running, execute `scripts/export-docs.ps1`. The exporter fetches each route, rewrites root-relative URLs to relative `.html` paths, adds a "static design preview" banner, and swaps the intake form's POST for a preview-only confirmation (the static host cannot save leads or send email).
+
+## Favicon & social assets
+
+Generated from the Launch Assist logo mark and served from `wwwroot` (and mirrored into `docs/`): `favicon.svg`, `favicon-32x32.png`, `apple-touch-icon.png` (180×180), `icon-512.png`, `site.webmanifest`, and `og-image.png` (1200×630) used by the Open Graph and Twitter card tags. `scripts/make-icons.ps1` and `scripts/make-og.ps1` regenerate them.

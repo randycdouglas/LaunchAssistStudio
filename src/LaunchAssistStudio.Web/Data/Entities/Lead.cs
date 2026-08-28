@@ -41,6 +41,8 @@ public class Lead
     [MaxLength(100)] public string? EcommerceSubscriptions { get; set; }
     [MaxLength(600)] public string? EcommerceIntegrations { get; set; }
     [MaxLength(100)] public string? EcommerceMigration { get; set; }
+    [MaxLength(100)] public string? EcommerceTaxes { get; set; }
+    [MaxLength(100)] public string? EcommercePaymentProvider { get; set; }
 
     // Software details
     [MaxLength(100)] public string? SoftwareApplicationType { get; set; }
@@ -49,11 +51,13 @@ public class Lead
     [MaxLength(100)] public string? SoftwareLoginRequirements { get; set; }
     [MaxLength(600)] public string? SoftwareIntegrations { get; set; }
     [MaxLength(100)] public string? SoftwareDataMigration { get; set; }
+    [MaxLength(600)] public string? SoftwareMigrationNeeds { get; set; }
     [MaxLength(8000)] public string? SoftwareBusinessProblem { get; set; }
 
     // Budget & timing
     [MaxLength(100)] public string? Budget { get; set; }
     [MaxLength(100)] public string? Timeline { get; set; }
+    public DateOnly? TargetLaunchDate { get; set; }
 
     // Contact
     [MaxLength(200)] public string ContactName { get; set; } = "";

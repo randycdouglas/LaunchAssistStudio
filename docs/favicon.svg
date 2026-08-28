@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-label="Launch Assist Studio">
+  <defs>
+    <linearGradient id="lasMark" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#5CC2FF"/>
+      <stop offset=".55" stop-color="#2563EB"/>
+      <stop offset="1" stop-color="#1646B7"/>
+    </linearGradient>
+  </defs>
+  <rect width="128" height="128" rx="24" fill="#0D1B2A"/>
+  <g transform="translate(8.56 5.92) scale(0.88)">
+    <path d="M28 102 70 16l42 86-18-14-24-49-25 50-17 13Z" fill="url(#lasMark)"/>
+    <path d="M14 110c25-11 47-19 78-21-15 7-26 14-36 26-17-3-29-2-42-5Z" fill="#F8FAFC"/>
+    <path d="M70 16 97 70 77 58 70 16Z" fill="#75CEFF" opacity=".9"/>
+    <path d="M70 55 84 84H55l15-29Z" fill="#0D1B2A"/>
+  </g>
+</svg>
